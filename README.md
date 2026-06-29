@@ -58,6 +58,7 @@ skills/
 templates/
   lp/                        landing page pronta (troca 3 valores e sobe num host grátis)
   n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
+  shopee-affiliate/gerar-link.js  (avançado) exemplo Node da Shopee Affiliate API
 assets/
   logo/                logo (svg + png)
   criativos/           fotos só-produto + tabela-tamanhos.png + video/ (10 Reels 9:16)
@@ -77,6 +78,7 @@ vendas/
   scripts-de-conversa.md DM proativo + pré-venda + objeções
   ideias-de-conteudo.md  ganchos e calendário de posts
   inteligencia-de-campanha.md  use 1 código por canal pra saber o que converte
+  conectar-api-shopee.md  (avançado) gerar links + ler conversões via API oficial
   legendas-prontas.md    legendas copia-e-cola (pra quem não usa o Claude Code)
   roteiros-reels.md      8 roteiros de Reels plano a plano
   roteiros-stories.md    6 sequências de stories prontas

@@ -34,6 +34,18 @@
       "title": "Seu codigo de voucher de parceiro",
       "description": "O codigo de cupom que a Noma Mini te deu (ex.: MARIA). E ele que atribui suas vendas. Vai nos criativos e na sua LP.",
       "sensitive": false
+    },
+    "shopee_affiliate_app_id": {
+      "type": "string",
+      "title": "Seu App ID da Shopee Affiliate API (opcional)",
+      "description": "So pra quem usa o caminho avancado (Programa de Afiliados Shopee + API). Deixe vazio se voce usa o cupom da marca.",
+      "sensitive": false
+    },
+    "shopee_affiliate_secret": {
+      "type": "string",
+      "title": "Seu Secret da Shopee Affiliate API (opcional)",
+      "description": "Secret das suas credenciais Shopee Affiliate. Guardado no keychain (sensitive), nunca versionado.",
+      "sensitive": true
     }
   }
 }
