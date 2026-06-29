@@ -30,11 +30,14 @@
 
   // ---- A/B test: troca headline + texto do CTA conforme ?v= ----
   var VARIANTES = {
-    a: { h1: "Roupa infantil feita pra mexer.",       cta: "Ver na Shopee →" },
-    b: { h1: "A roupa que ele não pede pra tirar.",   cta: "Quero o conjunto →" },
+    a: { h1: "Roupa infantil feita pra mexer.",        sub: "Algodão macio, sem etiqueta que coça. Oversize de propósito.", cta: "Ver na Shopee →" },
+    b: { h1: "A roupa que ele não pede pra tirar.",     sub: "Tão macia que vira a favorita no primeiro dia. Sem etiqueta que coça.", cta: "Quero o conjunto →" },
+    c: { h1: "Mais de mil mães já escolheram.",         sub: "Algodão premium, conforto de verdade e 4 cores que combinam com tudo.", cta: "Ver avaliações na Shopee →" },
+    d: { h1: "Conjunto a partir de R$ 59,90.",          sub: "Camiseta + shorts em algodão premium. Cupom ativo por tempo limitado.", cta: "Garantir com cupom →" },
   };
   var vc = VARIANTES[ctx.variant] || VARIANTES.a;
   var h1 = document.querySelector(".hero h1"); if (h1) h1.textContent = vc.h1;
+  var sub = document.querySelector(".hero p"); if (sub) sub.textContent = vc.sub;
   ["cta", "cta2"].forEach(function (id) {
     var el = document.getElementById(id); if (el && id === "cta") el.textContent = vc.cta;
   });

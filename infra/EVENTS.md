@@ -25,7 +25,9 @@ o que sai do browser (pixel) e do servidor (CAPI).
   PII (em/ph), se houver, **sempre hasheada** (já feito em `tracker/src/meta.js`).
 
 ## A/B testing (`variant`)
-A LP lê `?v=a|b`, troca headline/CTA e marca **todos** os eventos com a variante.
+A LP lê `?v=a|b|c|d`, troca headline/subtítulo/CTA e marca **todos** os eventos com
+a variante. Variantes prontas: **a** (movimento), **b** (emocional), **c** (prova
+social), **d** (preço/urgência).
 O `/stats` devolve `por_variante` e o painel mostra a comparação. Pra rodar: gere
 links com `v=a` e `v=b` (mesma verba), espere ~3 dias, compare a conversão. Quem já
 rodou o `schema.sql` antigo aplica `migrations/0002_variant.sql` uma vez.

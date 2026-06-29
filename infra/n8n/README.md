@@ -21,6 +21,10 @@ O `/conversion` faz `INSERT ... ON CONFLICT DO NOTHING` por `conversion_id` e s�
 manda `Purchase` na primeira vez que casa o clique. Por isso a janela de 7 dias
 pode reprocessar sem contar venda em dobro.
 
+### Paginação (automática)
+O Code node pagina por `scrollId` até esgotar a janela (teto de 50 páginas × 500 =
+25 mil vendas/janela). Não perde vendas quando o volume cresce — sem você mexer.
+
 ## `relatorio-semanal.json` (a automação que te diz o que fazer)
 Toda segunda 8h: lê o `/relatorio` do Worker (texto já pronto — canal vencedor, o
 que cortar, A/B) e te manda por e-mail. É o cérebro da operação: você não precisa

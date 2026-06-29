@@ -78,6 +78,7 @@ Antes do CNPJ, siga o bloco A do [`CHECKLIST-LANCAMENTO.md`](CHECKLIST-LANCAMENT
 - [`EVENTS.md`](EVENTS.md) — taxonomia de eventos (Meta × GA4 × D1) e a regra de dedup.
 - [`CHECKLIST-LANCAMENTO.md`](CHECKLIST-LANCAMENTO.md) — pré-CNPJ / com MEI / ligar a verba.
 - [`cloudflare/tracker/tools/gerar-links.mjs`](cloudflare/tracker/tools/gerar-links.mjs) — gera os links `/go` por canal.
+- [`ROADMAP-POS-CNPJ.md`](ROADMAP-POS-CNPJ.md) — lead/WhatsApp + remarketing, prontos pra ligar quando o MEI sair.
 
 ## Privacidade (LGPD)
 
