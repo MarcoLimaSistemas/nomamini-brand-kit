@@ -23,6 +23,20 @@ troca de cor. Pode usar em qualquer canal (não têm criança).
 > criativos na sua voz — só mantendo a regra de marca. Nunca embuta um CTA que
 > mande pro WhatsApp/loja da marca: use **seu** cupom, senão a venda não conta.
 
+### Tabela de tamanhos (`criativos/tabela-tamanhos.png`)
+Imagem pronta (4:5) pra enviar no Direct/WhatsApp quando perguntarem de tamanho.
+
+## Carrosséis educativos (`carrosseis/`)
+7 carrosséis 1080×1080 na identidade da marca, texto-puro (sem criança), prontos
+pra postar — performam bem no orgânico (salvamento/compartilhamento):
+`tamanho`, `oversize`, `durar-3x`, `5-sinais`, `mito-verdade`, `etiqueta`, `a-z`.
+
+## Cards de frase (`cards/`)
+8 cards 1080×1080 com frases da marca — tapa-buraco de feed sem precisar de foto.
+
+## Cores e fontes
+Pra criar o seu próprio: ver [`marca-cores-fontes.md`](marca-cores-fontes.md).
+
 ## Regra que vale pra TODO criativo (inclusive os seus)
 - **Criança real nunca.** No Instagram e em anúncio pago, **nenhuma criança**
   (nem de IA) — só manequim ou produto.
