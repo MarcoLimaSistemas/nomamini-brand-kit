@@ -60,19 +60,25 @@ async function gerarLink(originUrl, subIds = []) {
 }
 
 // 2) Relatório de conversão por período (janela ~90 dias). Quebra por subId.
+//    Schema: orderId fica em orders[].orderId e o valor da venda (GMV) em
+//    orders[].items[].actualAmount. O subId volta em utmContent. (campaignType
+//    NAO existe no node — a campanha sai do utmContent.)
 async function conversoes(startUnix, endUnix, limit = 100) {
   const data = await call(`query {
     conversionReport(purchaseTimeStart: ${startUnix}, purchaseTimeEnd: ${endUnix}, limit: ${limit}) {
       nodes {
         conversionId
-        orderId
         purchaseTime
+        utmContent          # aqui voltam os subIds que você mandou no link
         totalCommission
         netCommission
-        utmContent          # aqui voltam os subIds que você mandou no link
-        campaignType
+        orders {
+          orderId
+          orderStatus
+          items { actualAmount itemPrice qty }   # actualAmount = valor da venda (GMV)
+        }
       }
-      pageInfo { scrollId }   # scrollId expira em ~30s — use na próxima página
+      pageInfo { scrollId hasNextPage }   # scrollId expira em ~30s — use na próxima página
     }
   }`);
   return data.conversionReport;

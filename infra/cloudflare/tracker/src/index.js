@@ -190,19 +190,28 @@ async function handleConversion(request, env) {
       source: "server", channel: click.channel, variant: click.variant, coupon: click.coupon,
       value: c.value, currency: "BRL", raw: JSON.stringify(c),
     });
+    const hasValue = Number(c.value) > 0;
     if (env.META_PIXEL_ID && env.META_CAPI_TOKEN) {
+      // action_source "other": a compra fecha no Shopee, fora do nosso site (não "website").
+      // Sem event_source_url (só obrigatório p/ action_source "website").
       await sendMetaEvent(env, {
         event_name: "Purchase", event_id: clickId, event_time: eventTime,
-        action_source: "website", event_source_url: click.dest,
+        action_source: "other",
         fbp: click.fbp, fbc: click.fbc, country: click.country,
-        custom_data: { value: c.value, currency: "BRL", channel: click.channel, coupon: click.coupon },
+        custom_data: {
+          ...(hasValue ? { value: Number(c.value), currency: "BRL" } : {}),
+          channel: click.channel, coupon: click.coupon,
+          order_id: c.order_id,
+        },
       }).catch(() => {});
       sent++;
     }
     if (env.GA4_MEASUREMENT_ID && env.GA4_API_SECRET && click.ga_client_id) {
       await sendGa4Event(env, click.ga_client_id, "purchase", {
-        value: c.value, currency: "BRL", transaction_id: c.order_id, channel: click.channel,
-      }).catch(() => {});
+        ...(hasValue ? { value: Number(c.value), currency: "BRL" } : {}),
+        transaction_id: c.order_id, channel: click.channel,
+        items: [{ item_id: c.order_id || clickId, item_name: "Noma Mini", price: Number(c.value) || 0, quantity: 1 }],
+      }, { eventTimeSec: eventTime }).catch(() => {});
     }
   }
   return json({ ok: true, recebidas: rows.length, casadas: matched, purchase_enviados: sent });

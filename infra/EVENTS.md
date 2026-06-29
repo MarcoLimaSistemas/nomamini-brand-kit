@@ -13,8 +13,14 @@ o que sai do browser (pixel) e do servidor (CAPI).
 
 ## Regras
 - **`event_id = click_id`** sempre. Sem isso, browser + server contam 2x.
-- `Purchase` é **só server-side** — não há pixel no checkout do Shopee.
-- `value`/`currency` (BRL) só existem no `Purchase` (vêm do `conversionReport`).
+- `Purchase` é **só server-side** — não há pixel no checkout do Shopee. Ele usa
+  `action_source: "other"` (a compra fecha fora do nosso site) e **sem**
+  `event_source_url` — conforme a doc do Meta CAPI.
+- `value`/`currency` (BRL) só existem no `Purchase`. O valor (GMV) vem de
+  `orders[].items[].actualAmount` do `conversionReport` (não da comissão). Se o
+  Shopee não devolver o valor, o `Purchase` ainda dispara, só sem `value`.
+- **GA4:** todo evento server-side leva `session_id` + `engagement_time_msec`,
+  senão não aparece nos relatórios padrão (só no DebugView).
 - `channel` (`ch`) e `coupon` viajam em todos os eventos como `custom_data`/params —
   é o que liga o evento à campanha.
 
