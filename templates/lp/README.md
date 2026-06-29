@@ -7,7 +7,9 @@ cupom**. Já vem na identidade da marca. Sobe em qualquer host grátis em ~5 min
 Procure e substitua (só estes):
 - `SEU_PIXEL_ID` → o pixel da **sua** conta de anúncios (aparece 1x no script do pixel).
 - `SEU_LINK_SHOPEE` → o link do produto na Shopee (com a sua atribuição/cupom).
-- `SEU_CODIGO` → o seu cupom de parceiro.
+- `SEU_CODIGO` → o seu cupom de parceiro. **Se esta LP recebe seu tráfego pago,
+  use o sub-código do anúncio** (ex.: `SEUNOME-ADS`) — assim a marca sabe que essa
+  venda veio da campanha paga. Ver `../../vendas/inteligencia-de-campanha.md`.
 
 Troque também a imagem `conjunto-marrom-flatlay.png` se quiser outra cor/peça
 (use qualquer uma de `assets/criativos/` — **só-produto**, sem criança).

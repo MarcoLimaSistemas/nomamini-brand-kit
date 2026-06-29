@@ -44,10 +44,13 @@ pixel, verba) é do parceiro.
 - O fluxo recebe a venda confirmada (webhook) e manda um evento `Purchase` pro
   pixel **do parceiro**, melhorando o aprendizado da campanha dele.
 
-### 4. Atribuição da comissão (não esquecer)
-- Use o `cupom_codigo` do parceiro em TODO criativo e na LP. É só esse código no
-  pedido Shopee que faz a marca atribuir e pagar a comissão. Sem o código, a
-  venda não é contada como sua.
+### 4. Atribuição + inteligência de campanha (sub-códigos)
+- Use o código de cupom do parceiro em TODO criativo e na LP — é ele que atribui e
+  paga a comissão. Sem código, a venda não conta.
+- **Use um código por campanha/canal** (`SEUNOME-ADS`, `-REEL`, `-BIO`): assim a
+  marca devolve o breakdown "qual campanha converteu" — porque o pixel só vê clique,
+  não a compra (que fecha na Shopee). Detalhes em `${CLAUDE_PLUGIN_ROOT}/vendas/inteligencia-de-campanha.md`.
+- Pro anúncio pago, use o sub-código `-ADS` (na LP e no destino). Peça os códigos à marca.
 
 ## Saída
 - Entregue um plano enxuto e acionável (estrutura + criativos sugeridos + evento

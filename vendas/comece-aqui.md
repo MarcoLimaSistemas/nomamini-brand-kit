@@ -6,10 +6,11 @@ Bem-vindo(a) ao braço de vendas. Em 6 passos você está pronto pra vender.
 - Leia e assine o contrato de parceria (`../juridico/contrato-afiliado-modelo.md`).
 - Confirme seus dados de MEI (CNPJ) e o **Pix** pra receber comissão.
 
-## 2. Pegue o seu código
-- A marca te entrega um **código de cupom único** (ex.: SEUNOME). É ele que
-  atribui suas vendas. **Use em todo criativo e na sua LP.** Sem o código, a
-  venda não conta como sua.
+## 2. Pegue os seus códigos
+- A marca te entrega códigos de cupom — idealmente **um por canal** (`SEUNOME-REEL`,
+  `SEUNOME-ADS`, `SEUNOME-BIO`). São eles que atribuem suas vendas **e** te mostram
+  qual canal converte. **Use o código do canal em cada lugar.** Sem código, a venda
+  não conta. Entenda em `inteligencia-de-campanha.md`.
 
 ## 3. Instale o kit no Claude Code
 ```

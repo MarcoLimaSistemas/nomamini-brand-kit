@@ -76,6 +76,7 @@ vendas/
   guia-de-tamanhos.md    tabelas + resposta pronta (a pergunta nº1)
   scripts-de-conversa.md DM proativo + pré-venda + objeções
   ideias-de-conteudo.md  ganchos e calendário de posts
+  inteligencia-de-campanha.md  use 1 código por canal pra saber o que converte
   legendas-prontas.md    legendas copia-e-cola (pra quem não usa o Claude Code)
   roteiros-reels.md      8 roteiros de Reels plano a plano
   roteiros-stories.md    6 sequências de stories prontas
