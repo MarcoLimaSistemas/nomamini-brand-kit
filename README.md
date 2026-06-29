@@ -56,6 +56,7 @@ skills/
   planejar-semana/SKILL.md      monta o calendário da semana a partir do kit
   fazer-minhas-fotos/SKILL.md   brief de foto/vídeo só-produto (celular)
 templates/
+  lp/                        landing page pronta (troca 3 valores e sobe num host grátis)
   n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
 assets/
   logo/                logo (svg + png)

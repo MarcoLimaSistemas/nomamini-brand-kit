@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Noma Mini — Roupa infantil feita pra mexer</title>
+<meta name="description" content="Roupa infantil premium: algodão macio, sem etiqueta que coça, oversize de propósito. Conjunto a partir de R$ 59,90." />
+
+<!-- ===================================================================
+  TROQUE OS 3 VALORES ABAIXO (e só estes) antes de publicar:
+   - SEU_PIXEL_ID   = o pixel da SUA conta de anúncios
+   - SEU_LINK_SHOPEE = o link do produto na Shopee (com sua atribuição)
+   - SEU_CODIGO      = o seu cupom de parceiro
+==================================================================== -->
+<script>
+  window.NOMA = {
+    LINK_SHOPEE: "SEU_LINK_SHOPEE",
+    CUPOM: "SEU_CODIGO"
+  };
+</script>
+
+<!-- Meta Pixel (SEU pixel) — troque SEU_PIXEL_ID -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','SEU_PIXEL_ID');fbq('track','PageView');
+</script>
+
+<style>
+  :root{--creme:#F4EFE6;--areia:#E3D5C0;--terracota:#C98B6B;--argila:#A9745B;--carvao:#3A3531}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,Arial,sans-serif;color:var(--carvao);background:var(--creme);line-height:1.6}
+  .wrap{max-width:560px;margin:0 auto;padding:0 22px}
+  h1,h2{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.15}
+  header{text-align:center;padding:48px 0 8px}
+  header .logo{font-family:'Fraunces',serif;font-size:22px;letter-spacing:.5px}
+  .hero{text-align:center;padding:18px 0 8px}
+  .hero h1{font-size:34px;margin-bottom:14px}
+  .hero p{font-size:18px;color:var(--argila);margin-bottom:8px}
+  .shot{width:100%;border-radius:18px;margin:22px 0;background:var(--areia);aspect-ratio:4/5;object-fit:cover}
+  .cta{display:block;text-align:center;background:var(--terracota);color:#fff;text-decoration:none;
+       font-weight:700;font-size:18px;padding:18px 22px;border-radius:14px;margin:18px 0}
+  .cupom{text-align:center;border:2px dashed var(--argila);border-radius:12px;padding:14px;margin:10px 0;
+         font-size:16px}
+  .cupom b{font-size:22px;letter-spacing:1px;color:var(--argila)}
+  ul.bens{list-style:none;margin:24px 0}
+  ul.bens li{padding:10px 0 10px 30px;position:relative;border-bottom:1px solid var(--areia)}
+  ul.bens li::before{content:"•";color:var(--terracota);position:absolute;left:6px;font-size:22px;top:6px}
+  .bloco{padding:26px 0}
+  .bloco h2{font-size:24px;margin-bottom:10px}
+  .trust{background:var(--areia);border-radius:14px;padding:18px;text-align:center;font-size:15px;margin:18px 0}
+  footer{text-align:center;color:var(--argila);font-size:13px;padding:34px 0}
+  @media(max-width:480px){.hero h1{font-size:28px}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header><div class="logo">Noma Mini</div></header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Roupa infantil feita pra mexer.</h1>
+      <p>Algodão macio, sem etiqueta que coça. Oversize de propósito.</p>
+    </section>
+
+    <!-- Imagem só-produto. Troque pelo arquivo do kit (assets/criativos) -->
+    <img class="shot" src="conjunto-marrom-flatlay.png" alt="Conjunto Noma Mini" />
+
+    <div class="cupom">Use o cupom <b id="cupom">SEU_CODIGO</b> na Shopee 🤍</div>
+    <a class="cta" id="cta" href="#" rel="nofollow noopener">Ver na Shopee →</a>
+
+    <section class="bloco">
+      <h2>Por que as mães escolhem</h2>
+      <ul class="bens">
+        <li>100% algodão premium — macio e respirável o dia todo.</li>
+        <li>Sem etiqueta que coça nas costas.</li>
+        <li>Oversize: liberdade pra brincar e mais tempo de uso.</li>
+        <li>4 cores atemporais que combinam com tudo.</li>
+        <li>Conjunto (camiseta + shorts) a partir de R$ 59,90.</li>
+      </ul>
+    </section>
+
+    <div class="trust">Compra na Shopee: pagamento protegido, rastreio e direito de troca pela plataforma.</div>
+
+    <a class="cta" id="cta2" href="#" rel="nofollow noopener">Garantir o meu na Shopee →</a>
+
+    <footer>Noma Mini · Feito pra mexer 🤍</footer>
+  </main>
+
+  <script>
+    // injeta cupom e link, e dispara evento de clique no pixel do parceiro
+    document.getElementById('cupom').textContent = window.NOMA.CUPOM;
+    document.querySelectorAll('#cta,#cta2').forEach(function(a){
+      a.href = window.NOMA.LINK_SHOPEE;
+      a.addEventListener('click', function(){ if(window.fbq) fbq('track','Lead'); });
+    });
+  </script>
+</body>
+</html>
