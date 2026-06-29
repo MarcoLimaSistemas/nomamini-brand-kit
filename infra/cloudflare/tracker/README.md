@@ -10,7 +10,12 @@ server-side. É o que torna a atribuição possível no modelo afiliado.
 | `GET /go?u=<shopee>&ch=<canal>&cupom=<cod>&utm_*` | gera `click_id`, grava o clique, dispara CAPI/GA4, redireciona pro Shopee carregando o `click_id` no `sub_id`. **É o destino dos seus CTAs.** |
 | `POST /collect` | beacon do browser (PageView/ViewContent/Lead) com o **mesmo `event_id`** do pixel → deduplica. |
 | `POST /conversion` | ingest das vendas do Shopee (chamado pelo n8n, autenticado por `INGEST_KEY`). Casa o `click_id` e manda `Purchase` server-side. |
+| `GET /stats?dias=30&key=...` | métricas do funil por canal/etapa em JSON (read-only, protegido por `STATS_KEY`). Alimenta o painel. |
 | `GET /health` | healthcheck. |
+
+Além das rotas, um **cron diário** (`triggers.crons` no `wrangler.toml`) roda a
+**retenção LGPD**: apaga `events` e cliques não-convertidos além de `RETENTION_DAYS`
+(default 180). Cliques convertidos ficam (precisam pra reconciliar comissão).
 
 ## Deploy (uma vez)
 

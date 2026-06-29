@@ -33,6 +33,7 @@ npx wrangler secret put META_CAPI_TOKEN
 npx wrangler secret put GA4_API_SECRET
 npx wrangler secret put IP_SALT          # string aleatória longa (hash de IP/LGPD)
 npx wrangler secret put INGEST_KEY       # guarde: o n8n vai usar a mesma
+npx wrangler secret put STATS_KEY        # abre o painel/stats (read-only)
 npx wrangler secret put SHOPEE_SECRET    # só se for usar o mint por clique
 npm run deploy
 ```

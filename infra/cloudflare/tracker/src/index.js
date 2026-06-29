@@ -3,7 +3,10 @@
 // Rotas:
 //   GET  /go       redireciona pro Shopee gravando o clique + CAPI server-side
 //   POST /collect  beacon do browser (PageView/ViewContent/Lead) -> CAPI dedup
+//   POST /conversion  ingest das vendas Shopee (n8n) -> Purchase server-side
+//   GET  /stats    métricas do funil por canal (protegido por STATS_KEY)
 //   GET  /health   healthcheck
+// Cron: retenção LGPD (apaga eventos/cliques antigos) — ver scheduled().
 // Contrato de dados: ver ../../README.md ("Contrato de dados").
 // ============================================================================
 
@@ -21,8 +24,14 @@ export default {
     if (url.pathname === "/go") return handleGo(request, url, env, ctx);
     if (url.pathname === "/collect" && request.method === "POST") return handleCollect(request, env, ctx);
     if (url.pathname === "/conversion" && request.method === "POST") return handleConversion(request, env);
+    if (url.pathname === "/stats") return cors(env, await handleStats(url, env));
 
     return new Response("Noma Mini tracker", { status: 200 });
+  },
+
+  // Cron de retenção (LGPD): apaga dados além de RETENTION_DAYS. Agende em wrangler.toml.
+  async scheduled(_controller, env, ctx) {
+    ctx.waitUntil(runRetention(env));
   },
 };
 
@@ -195,6 +204,47 @@ async function handleConversion(request, env) {
     }
   }
   return json({ ok: true, recebidas: rows.length, casadas: matched, purchase_enviados: sent });
+}
+
+// ---------------------------------------------------------------------------
+// /stats — métricas do funil por canal (JSON). Protegido por STATS_KEY.
+// ---------------------------------------------------------------------------
+async function handleStats(url, env) {
+  if (env.STATS_KEY && url.searchParams.get("key") !== env.STATS_KEY) {
+    return json({ ok: false, error: "unauthorized" }, 401);
+  }
+  const dias = Math.min(Number(url.searchParams.get("dias")) || 30, 365);
+  const desde = Math.floor(Date.now() / 1000) - dias * 24 * 3600;
+
+  const porCanal = await env.DB.prepare(
+    `SELECT channel,
+            COUNT(*) AS cliques,
+            SUM(converted) AS vendas,
+            ROUND(100.0*SUM(converted)/COUNT(*), 2) AS conv_pct,
+            ROUND(SUM(COALESCE(value,0)), 2) AS receita,
+            ROUND(SUM(COALESCE(commission,0)), 2) AS comissao
+     FROM clicks WHERE created_at > ?
+     GROUP BY channel ORDER BY vendas DESC`
+  ).bind(desde).all().catch(() => ({ results: [] }));
+
+  const porEtapa = await env.DB.prepare(
+    `SELECT event_name, COUNT(*) AS total
+     FROM events WHERE event_time > ?
+     GROUP BY event_name`
+  ).bind(desde).all().catch(() => ({ results: [] }));
+
+  return json({ ok: true, dias, por_canal: porCanal.results || [], por_etapa: porEtapa.results || [] });
+}
+
+// ---------------------------------------------------------------------------
+// Retenção LGPD — apaga dados além de RETENTION_DAYS (default 180).
+// ---------------------------------------------------------------------------
+async function runRetention(env) {
+  const dias = Number(env.RETENTION_DAYS) || 180;
+  const corte = Math.floor(Date.now() / 1000) - dias * 24 * 3600;
+  await env.DB.prepare(`DELETE FROM events WHERE created_at < ?`).bind(corte).run().catch(() => {});
+  // mantém cliques convertidos (precisam pra reconciliar comissão); apaga só os não-convertidos antigos
+  await env.DB.prepare(`DELETE FROM clicks WHERE created_at < ? AND converted = 0`).bind(corte).run().catch(() => {});
 }
 
 // ---------------------------------------------------------------------------

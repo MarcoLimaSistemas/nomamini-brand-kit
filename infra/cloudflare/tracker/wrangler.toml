@@ -14,6 +14,11 @@ GO_EVENT_NAME = "InitiateCheckout"               # evento do clique de saída
 META_PIXEL_ID = ""                               # id do pixel (público)
 GA4_MEASUREMENT_ID = ""                          # G-XXXXXXX (público)
 SHOPEE_APP_ID = ""                               # App ID Shopee (público; o Secret é segredo)
+RETENTION_DAYS = "180"                            # retenção LGPD: apaga eventos além disso
+
+# ---- Cron: retenção LGPD roda todo dia às 4h UTC ----
+[triggers]
+crons = ["0 4 * * *"]
 
 # ---- Segredos (NUNCA aqui) — suba com `wrangler secret put NOME` ----
 #   META_CAPI_TOKEN        token da Conversions API
@@ -21,6 +26,7 @@ SHOPEE_APP_ID = ""                               # App ID Shopee (público; o Se
 #   SHOPEE_SECRET          secret da Shopee Affiliate API
 #   IP_SALT                sal aleatório pro hash de IP (LGPD)
 #   INGEST_KEY             chave compartilhada com o n8n (autentica /conversion)
+#   STATS_KEY              chave read-only pra abrir o /stats e o painel
 #   META_TEST_EVENT_CODE   (opcional) código de teste do CAPI
 
 # ---- D1 (banco de eventos) ----

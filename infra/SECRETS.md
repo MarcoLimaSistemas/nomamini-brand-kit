@@ -12,6 +12,7 @@ App ID Shopee) podem ir no `wrangler.toml`/`window.NOMA`. Sensíveis vão em cof
 | `SHOPEE_SECRET` | Worker + n8n | 🔴 | `wrangler secret put` / variável do n8n |
 | `IP_SALT` | Worker | 🔴 | `wrangler secret put IP_SALT` (string aleatória longa) |
 | `INGEST_KEY` | Worker + n8n | 🔴 | `wrangler secret put` (a **mesma** dos dois lados) |
+| `STATS_KEY` | Worker | 🔴 | `wrangler secret put STATS_KEY` (abre o `/stats` e o painel) |
 | `META_TEST_EVENT_CODE` | Worker | 🟡 | só em teste; remova depois |
 | `META_PIXEL_ID` | Worker `[vars]` + LP | 🟢 público | `wrangler.toml` / `window.NOMA` |
 | `GA4_MEASUREMENT_ID` | Worker `[vars]` + LP | 🟢 público | idem |

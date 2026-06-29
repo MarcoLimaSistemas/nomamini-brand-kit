@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Painel — Funil Noma Mini</title>
+<style>
+  :root{--creme:#F4EFE6;--areia:#E3D5C0;--terracota:#C98B6B;--argila:#A9745B;--carvao:#3A3531}
+  body{font-family:system-ui,Arial,sans-serif;color:var(--carvao);background:var(--creme);margin:0;padding:24px}
+  .wrap{max-width:760px;margin:0 auto}
+  h1{font-size:24px;margin:0 0 4px} .sub{color:var(--argila);margin-bottom:18px;font-size:14px}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  input,select,button{padding:9px 12px;border:1px solid var(--areia);border-radius:10px;font-size:14px;background:#fff}
+  button{background:var(--terracota);color:#fff;border:0;font-weight:700;cursor:pointer}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;margin-bottom:20px}
+  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--creme);font-size:14px}
+  th{background:var(--areia);font-weight:700} td.n{text-align:right;font-variant-numeric:tabular-nums}
+  .cards{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+  .card{background:#fff;border-radius:12px;padding:14px 18px;flex:1;min-width:130px}
+  .card b{display:block;font-size:26px;font-family:Georgia,serif} .card span{color:var(--argila);font-size:13px}
+  .err{color:#a33;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Funil Noma Mini</h1>
+  <div class="sub">Lê o <code>/stats</code> do Worker. Os dados ficam no seu D1 — nada sai daqui.</div>
+
+  <div class="controls">
+    <input id="tracker" placeholder="https://noma-tracker.SEU.workers.dev" size="34" />
+    <input id="key" placeholder="STATS_KEY" type="password" />
+    <select id="dias"><option value="7">7 dias</option><option value="30" selected>30 dias</option><option value="90">90 dias</option></select>
+    <button onclick="carregar()">Atualizar</button>
+  </div>
+
+  <div class="cards" id="cards"></div>
+  <h2 style="font-size:18px">Por canal</h2>
+  <table id="canal"><thead><tr><th>Canal</th><th class="n">Cliques</th><th class="n">Vendas</th><th class="n">Conv %</th><th class="n">Receita</th><th class="n">Comissão</th></tr></thead><tbody></tbody></table>
+  <div id="msg" class="err"></div>
+</div>
+
+<script>
+  // lembra os valores no navegador (não versiona nada)
+  ["tracker","key","dias"].forEach(function(id){
+    var el=document.getElementById(id), k="noma_"+id;
+    if(localStorage[k]) el.value=localStorage[k];
+    el.addEventListener("change",function(){localStorage[k]=el.value});
+  });
+
+  async function carregar(){
+    var t=document.getElementById("tracker").value.replace(/\/$/,"");
+    var key=document.getElementById("key").value;
+    var dias=document.getElementById("dias").value;
+    var msg=document.getElementById("msg"); msg.textContent="";
+    try{
+      var r=await fetch(t+"/stats?dias="+dias+"&key="+encodeURIComponent(key));
+      var d=await r.json();
+      if(!d.ok){ msg.textContent="Erro: "+(d.error||"falha"); return; }
+      render(d);
+    }catch(e){ msg.textContent="Não consegui ler "+t+"/stats — confira a URL e a STATS_KEY."; }
+  }
+
+  function render(d){
+    var cli=0,ven=0,rec=0,com=0;
+    d.por_canal.forEach(function(c){cli+=c.cliques||0;ven+=c.vendas||0;rec+=c.receita||0;com+=c.comissao||0;});
+    document.getElementById("cards").innerHTML =
+      card(cli,"cliques")+card(ven,"vendas")+card((cli?(100*ven/cli).toFixed(1):0)+"%","conversão")+
+      card("R$ "+rec.toFixed(2),"receita")+card("R$ "+com.toFixed(2),"comissão");
+    var tb=document.querySelector("#canal tbody"); tb.innerHTML="";
+    d.por_canal.forEach(function(c){
+      tb.innerHTML+="<tr><td>"+(c.channel||"—")+"</td><td class=n>"+c.cliques+"</td><td class=n>"+
+        (c.vendas||0)+"</td><td class=n>"+(c.conv_pct||0)+"</td><td class=n>R$ "+(c.receita||0)+
+        "</td><td class=n>R$ "+(c.comissao||0)+"</td></tr>";
+    });
+    if(!d.por_canal.length) tb.innerHTML="<tr><td colspan=6>Sem dados nesse período.</td></tr>";
+  }
+  function card(v,l){return "<div class=card><b>"+v+"</b><span>"+l+"</span></div>";}
+
+  if(document.getElementById("tracker").value) carregar();
+</script>
+</body>
+</html>

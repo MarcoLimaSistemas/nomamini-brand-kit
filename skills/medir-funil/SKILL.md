@@ -10,6 +10,11 @@ Você consulta o banco de eventos do Worker (`infra/cloudflare/tracker`) e devol
 uma leitura acionável: **qual canal vale o esforço/verba**. Rode os comandos via
 `wrangler d1 execute noma_tracking --remote --command "<SQL>"` (na pasta do tracker).
 
+**Atalhos sem SQL:**
+- Endpoint JSON: `GET {tracker}/stats?dias=30&key=STATS_KEY` (já agrega por canal/etapa).
+- Painel visual: abra `infra/cloudflare/pages/painel.html` (publicado junto da LP),
+  informe a URL do Worker + `STATS_KEY` — mostra cliques, vendas, conversão e receita.
+
 ## Consultas prontas
 
 **Funil por canal (a principal):**
