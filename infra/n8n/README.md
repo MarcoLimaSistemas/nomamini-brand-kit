@@ -21,6 +21,22 @@ O `/conversion` faz `INSERT ... ON CONFLICT DO NOTHING` por `conversion_id` e s�
 manda `Purchase` na primeira vez que casa o clique. Por isso a janela de 7 dias
 pode reprocessar sem contar venda em dobro.
 
+## `relatorio-semanal.json` (a automação que te diz o que fazer)
+Toda segunda 8h: lê o `/relatorio` do Worker (texto já pronto — canal vencedor, o
+que cortar, A/B) e te manda por e-mail. É o cérebro da operação: você não precisa
+abrir nada, o resumo chega.
+
+### Variáveis do n8n
+| Variável | Valor |
+|---|---|
+| `TRACKER_URL` | URL do Worker |
+| `STATS_KEY` | a mesma chave do Worker |
+| `REPORT_FROM` / `REPORT_EMAIL` | remetente / destinatário |
+
+Pra mandar no **Telegram/WhatsApp** em vez de e-mail, troque o último nó por um node
+Telegram/WhatsApp usando o mesmo `{{ $json.data }}` como texto. Precisa só de uma
+credencial SMTP (ou do canal escolhido).
+
 ## `../../templates/n8n-capi-pixel-flow.json` (simples, alternativo)
 Webhook → Purchase no CAPI. Use só se você tiver uma confirmação de venda própria
 (ex.: planilha/manual). No fluxo afiliado, prefira o de reconciliação acima.

@@ -1,0 +1,59 @@
+{
+  "name": "Noma Mini - Relatorio semanal do funil",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "weeks", "weeksInterval": 1, "triggerAtDay": [1], "triggerAtHour": 8 }
+          ]
+        }
+      },
+      "id": "agenda",
+      "name": "Toda segunda 8h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.TRACKER_URL }}/relatorio?dias=7&key={{ $env.STATS_KEY }}",
+        "options": {
+          "response": { "response": { "responseFormat": "text" } }
+        }
+      },
+      "id": "le-relatorio",
+      "name": "Le /relatorio (texto pronto)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{ $env.REPORT_FROM }}",
+        "toEmail": "={{ $env.REPORT_EMAIL }}",
+        "subject": "Funil Noma Mini — resumo da semana",
+        "emailFormat": "text",
+        "text": "={{ $json.data }}",
+        "options": {}
+      },
+      "id": "envia-email",
+      "name": "Manda por e-mail",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [720, 300],
+      "credentials": {
+        "smtp": { "id": "TROCAR_PELA_CREDENCIAL_SMTP", "name": "SMTP (seu provedor)" }
+      }
+    }
+  ],
+  "connections": {
+    "Toda segunda 8h": { "main": [[{ "node": "Le /relatorio (texto pronto)", "type": "main", "index": 0 }]] },
+    "Le /relatorio (texto pronto)": { "main": [[{ "node": "Manda por e-mail", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false,
+  "meta": {
+    "_comentario": "Toda segunda 8h: le o /relatorio do Worker (texto ja pronto, com canal vencedor e o que cortar) e manda por e-mail. Variaveis do n8n: TRACKER_URL, STATS_KEY (a mesma do Worker), REPORT_FROM, REPORT_EMAIL. Pra mandar no Telegram/WhatsApp em vez de e-mail, troque o ultimo no por um node Telegram/WhatsApp usando o mesmo {{ $json.data }} como texto."
+  }
+}

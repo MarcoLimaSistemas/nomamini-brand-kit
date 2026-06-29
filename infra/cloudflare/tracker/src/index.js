@@ -14,6 +14,7 @@ import { newClickId, sha256, parseTracking, buildFbc, json, cors } from "./track
 import { sendMetaEvent } from "./meta.js";
 import { sendGa4Event } from "./ga4.js";
 import { mintShopeeLink } from "./shopee.js";
+import { formatReport } from "./report.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -25,6 +26,7 @@ export default {
     if (url.pathname === "/collect" && request.method === "POST") return handleCollect(request, env, ctx);
     if (url.pathname === "/conversion" && request.method === "POST") return handleConversion(request, env);
     if (url.pathname === "/stats") return cors(env, await handleStats(url, env));
+    if (url.pathname === "/relatorio") return handleRelatorio(url, env);
 
     return new Response("Noma Mini tracker", { status: 200 });
   },
@@ -209,13 +211,8 @@ async function handleConversion(request, env) {
 // ---------------------------------------------------------------------------
 // /stats — métricas do funil por canal (JSON). Protegido por STATS_KEY.
 // ---------------------------------------------------------------------------
-async function handleStats(url, env) {
-  if (env.STATS_KEY && url.searchParams.get("key") !== env.STATS_KEY) {
-    return json({ ok: false, error: "unauthorized" }, 401);
-  }
-  const dias = Math.min(Number(url.searchParams.get("dias")) || 30, 365);
+async function queryAggregates(env, dias) {
   const desde = Math.floor(Date.now() / 1000) - dias * 24 * 3600;
-
   const porCanal = await env.DB.prepare(
     `SELECT channel,
             COUNT(*) AS cliques,
@@ -243,12 +240,30 @@ async function handleStats(url, env) {
      GROUP BY variante ORDER BY conv_pct DESC`
   ).bind(desde).all().catch(() => ({ results: [] }));
 
-  return json({
-    ok: true, dias,
+  return {
+    dias,
     por_canal: porCanal.results || [],
     por_etapa: porEtapa.results || [],
     por_variante: porVariante.results || [],
-  });
+  };
+}
+
+async function handleStats(url, env) {
+  if (env.STATS_KEY && url.searchParams.get("key") !== env.STATS_KEY) {
+    return json({ ok: false, error: "unauthorized" }, 401);
+  }
+  const dias = Math.min(Number(url.searchParams.get("dias")) || 30, 365);
+  return json({ ok: true, ...(await queryAggregates(env, dias)) });
+}
+
+// GET /relatorio — resumo em texto pronto pra enviar (e-mail/WhatsApp/Telegram via n8n).
+async function handleRelatorio(url, env) {
+  if (env.STATS_KEY && url.searchParams.get("key") !== env.STATS_KEY) {
+    return new Response("unauthorized", { status: 401 });
+  }
+  const dias = Math.min(Number(url.searchParams.get("dias")) || 7, 365);
+  const texto = formatReport(await queryAggregates(env, dias));
+  return new Response(texto, { headers: { "content-type": "text/plain; charset=utf-8" } });
 }
 
 // ---------------------------------------------------------------------------

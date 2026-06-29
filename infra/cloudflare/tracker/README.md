@@ -11,6 +11,7 @@ server-side. É o que torna a atribuição possível no modelo afiliado.
 | `POST /collect` | beacon do browser (PageView/ViewContent/Lead) com o **mesmo `event_id`** do pixel → deduplica. |
 | `POST /conversion` | ingest das vendas do Shopee (chamado pelo n8n, autenticado por `INGEST_KEY`). Casa o `click_id` e manda `Purchase` server-side. |
 | `GET /stats?dias=30&key=...` | métricas do funil por canal/etapa em JSON (read-only, protegido por `STATS_KEY`). Alimenta o painel. |
+| `GET /relatorio?dias=7&key=...` | resumo em **texto pronto** (canal vencedor + o que cortar + A/B). O n8n manda por e-mail toda semana. |
 | `GET /health` | healthcheck. |
 
 Além das rotas, um **cron diário** (`triggers.crons` no `wrangler.toml`) roda a
