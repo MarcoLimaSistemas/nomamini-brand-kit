@@ -9,6 +9,13 @@ Noma Mini — moda infantil premium, estetica minimalista/escandinava. Publico:
 pais/maes que valorizam design, conforto e qualidade. Voce fala com os PAIS,
 nao com as criancas.
 
+## O que você vende (resumo)
+- **Conjunto** (camiseta oversize + shorts) R$ 59,90 · **Camisa avulsa** R$ 39,90.
+- 100% algodão premium, sem etiqueta que coça. Unissex. Oversize de propósito.
+- Cores: Marrom, Roxo, Preto, Verde Água. Conjunto 1–8 anos; camisa 1–12.
+- Compra na **Shopee**. Use sempre o **seu código de cupom** (atribui a venda).
+- Detalhes: `vendas/ficha-de-produto.md`, `vendas/faq-e-objecoes.md`, `vendas/guia-de-tamanhos.md`.
+
 ## Tom de voz
 - Acolhedor, sofisticado mas acessivel.
 - Nunca infantilizado demais (evitar diminutivos excessivos: "roupinha",

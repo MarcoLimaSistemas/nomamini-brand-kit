@@ -55,11 +55,19 @@ templates/
   n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
 assets/
   logo/                logo (svg + png)
-  criativos/           5 fotos só-produto aprovadas
+  criativos/           5 fotos só-produto + video/ (10 Reels 9:16 sem legenda)
+vendas/
+  comece-aqui.md       onboarding do parceiro (6 passos)
+  ficha-de-produto.md  o que você vende (tecido, cores, tamanhos, preços)
+  faq-e-objecoes.md    respostas prontas pro cliente
+  guia-de-tamanhos.md  tabelas + resposta pronta (a pergunta nº1)
+  ideias-de-conteudo.md ganchos e calendário de posts
 juridico/
   contrato-afiliado-modelo.md    contrato de parceria (modelo, revisar c/ advogado)
   uso-imagem-ia-afiliado.md      regra de imagem/IA pro parceiro
 ```
+
+**Novo parceiro?** Comece por [`vendas/comece-aqui.md`](vendas/comece-aqui.md).
 
 > Os assets liberados são **só-produto** e os jurídicos são **modelos voltados ao
 > parceiro**. Nada de credencial, conta, workflow vivo ou jurídico interno da marca.
