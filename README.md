@@ -32,7 +32,10 @@ isso pronto, rodando no Cloudflare:
 3. **n8n** → lê as conversões da Shopee, casa o `click_id` e manda o `Purchase`
    server-side com o `event_id` certo (dedup). **Loop fechado.**
 
-Comece por [`infra/README.md`](infra/README.md) ou rode `/configurar-tracking`.
+Quer ver rodando **hoje, grátis e sem CNPJ**? Siga
+[`infra/COMECE-AQUI-INFRA.md`](infra/COMECE-AQUI-INFRA.md) (do zero ao 1º clique
+rastreado em ~20 min). Visão geral em [`infra/README.md`](infra/README.md) ou rode
+`/configurar-tracking`.
 
 ## Configuração no install (suas credenciais, nunca as da marca)
 No install, o plugin pergunta (e guarda **no seu** Claude Code / keychain):

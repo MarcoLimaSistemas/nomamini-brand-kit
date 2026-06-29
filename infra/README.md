@@ -65,6 +65,10 @@ todos os lugares.
 servidor (CAPI). O Meta deduplica quando os dois mandam o **mesmo `event_id`**. Sem
 isso, você conta a conversão em dobro.
 
+## Quer ver rodando hoje (sem CNPJ, grátis)?
+Siga [`COMECE-AQUI-INFRA.md`](COMECE-AQUI-INFRA.md) — do zero ao 1º clique rastreado
+num domínio `.pages.dev` em ~20 min.
+
 ## Ordem de deploy
 
 1. `cloudflare/tracker/` — cria o D1, sobe o Worker, põe os segredos. Veja o README de lá.
