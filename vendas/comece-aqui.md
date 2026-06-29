@@ -2,6 +2,19 @@
 
 Bem-vindo(a) ao braço de vendas. Em 6 passos você está pronto pra vender.
 
+## Antes de tudo: qual é o seu modelo (escolha UM)
+A Noma Mini trabalha com dois trilhos de atribuição — **você fica em um só**
+(misturar = comissão em dobro):
+
+- **🟢 Cupom da marca (padrão, recomendado):** a marca te dá códigos, **a marca te
+  paga** a comissão (Pix, via NF) e você vê tudo no seu **extrato**. É o que este
+  guia assume. Sem burocracia, sem código.
+- **🔵 Afiliado Shopee (avançado):** você se cadastra no Programa de Afiliados
+  Shopee, gera **seus links** e **a Shopee te paga**. Pra automatizar (links +
+  relatório), tem a API — ver `conectar-api-shopee.md`. Exige aprovação Shopee.
+
+Na dúvida, vá de **Cupom da marca**. O resto deste guia segue por ele.
+
 ## 1. Acerte o combinado
 - Leia e assine o contrato de parceria (`../juridico/contrato-afiliado-modelo.md`).
 - Confirme seus dados de MEI (CNPJ) e o **Pix** pra receber comissão.

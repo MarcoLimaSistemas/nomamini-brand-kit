@@ -3,6 +3,13 @@
 > Dúvidas de quem está pensando em entrar ou começando. Sobre o produto, veja
 > `ficha-de-produto.md`. Sobre atender cliente, `faq-e-objecoes.md`.
 
+**Cupom da marca ou afiliado Shopee (API)?**
+Dois trilhos, escolha **um** (misturar = comissão em dobro). **Cupom da marca**
+(padrão): a marca te paga, você vê o extrato — sem código, sem burocracia.
+**Afiliado Shopee** (avançado): a Shopee te paga, você gera seus links (e pode usar
+a API — `conectar-api-shopee.md`); exige cadastro/aprovação na Shopee. Na dúvida,
+fique no cupom.
+
 **Como eu ganho?**
 Comissão sobre cada venda que entrar com o **seu código de cupom** na Shopee,
 descontados cancelamentos/devoluções. A marca te passa o extrato → você emite a
