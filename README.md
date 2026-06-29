@@ -50,4 +50,16 @@ context/
 skills/
   revisar-criativo/SKILL.md
   gerar-copy-na-marca/SKILL.md
+  montar-campanha/SKILL.md
+templates/
+  n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
+assets/
+  logo/                logo (svg + png)
+  criativos/           5 fotos só-produto aprovadas
+juridico/
+  contrato-afiliado-modelo.md    contrato de parceria (modelo, revisar c/ advogado)
+  uso-imagem-ia-afiliado.md      regra de imagem/IA pro parceiro
 ```
+
+> Os assets liberados são **só-produto** e os jurídicos são **modelos voltados ao
+> parceiro**. Nada de credencial, conta, workflow vivo ou jurídico interno da marca.
