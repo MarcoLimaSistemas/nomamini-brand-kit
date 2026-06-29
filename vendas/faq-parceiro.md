@@ -40,6 +40,11 @@ Não. Você é autônomo e não-exclusivo, decide como e quando. Consistência a
 Conforme o contrato, sobre vendas **concluídas** (após a janela de devolução),
 mediante nota. Pix.
 
+**Como vejo minhas vendas e comissão?**
+A marca te manda um **link de extrato** (só seu) onde você vê, em tempo real,
+quanto tem a receber e **quanto cada código/campanha converteu** — é a sua
+inteligência de campanha (`inteligencia-de-campanha.md`). Não precisa pedir toda hora.
+
 **E se eu não vender?**
 Sem problema — é CPA, você só ganha por venda. Mas use o kit: `comece-aqui.md`,
 os roteiros e o banco de posts ajudam a destravar.

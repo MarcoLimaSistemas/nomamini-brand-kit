@@ -37,7 +37,8 @@ No install, informe seu pixel/conta de Ads e o seu código de cupom.
 ## Como você recebe
 - Comissão sobre as vendas que entraram com o **seu código**, descontados
   cancelamentos/devoluções.
-- A marca te passa o extrato → você emite a **NF (MEI)** → recebe via **Pix**.
+- Você acompanha tudo no **seu link de extrato** (a marca te envia): comissão a
+  receber + o que cada campanha converteu. Aí emite a **NF (MEI)** → recebe via **Pix**.
 
 ## Regras que protegem você
 - Criança real nunca; nenhuma criança em Instagram/anúncio pago.
