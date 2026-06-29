@@ -70,3 +70,6 @@ Se voce nao tem certeza do canal: trate como Instagram (so manequim/produto).
 - `/montar-campanha` — monta a campanha paga na SUA conta (pixel/verba seus), com
   o playbook Advantage+ e o template n8n+CAPI. A comissao e atribuida pelo SEU
   codigo de cupom — use-o em todo criativo e na sua LP.
+- `/responder-cliente` — responde uma duvida de cliente na voz da marca (pos-venda escala pra marca).
+- `/planejar-semana` — monta o calendario da semana puxando dos roteiros/posts do kit.
+- `/fazer-minhas-fotos` — brief de foto/video so-produto no celular (se voce recebeu uma peca).

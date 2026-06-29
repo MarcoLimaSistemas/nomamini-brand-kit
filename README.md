@@ -49,9 +49,12 @@ context/
   diretrizes-marca.md      as regras sempre-ativas
   identidade-da-marca.md   manifesto, posicionamento, tom, paleta, persona
 skills/
-  revisar-criativo/SKILL.md
-  gerar-copy-na-marca/SKILL.md
-  montar-campanha/SKILL.md
+  revisar-criativo/SKILL.md     checa post/anúncio contra as regras
+  gerar-copy-na-marca/SKILL.md  escreve copy no tom
+  montar-campanha/SKILL.md      campanha paga na conta do parceiro
+  responder-cliente/SKILL.md    responde dúvida de cliente na voz da marca
+  planejar-semana/SKILL.md      monta o calendário da semana a partir do kit
+  fazer-minhas-fotos/SKILL.md   brief de foto/vídeo só-produto (celular)
 templates/
   n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
 assets/
@@ -64,6 +67,8 @@ assets/
   marca-cores-fontes.md  paleta + fontes pra Canva
 vendas/
   comece-aqui.md         onboarding do parceiro (6 passos)
+  faq-parceiro.md        dúvidas de quem vai divulgar (comissão, MEI, etc.)
+  bio-instagram.md       como posicionar seu perfil de parceiro
   historia-da-marca.md   a história da fundadora pra você contar
   ficha-de-produto.md    o que você vende (tecido, cores, tamanhos, preços)
   faq-e-objecoes.md      respostas prontas pro cliente
@@ -79,6 +84,7 @@ vendas/
 juridico/
   contrato-afiliado-modelo.md    contrato de parceria (modelo, revisar c/ advogado)
   uso-imagem-ia-afiliado.md      regra de imagem/IA pro parceiro
+TERMOS-DE-USO.md                 licença de uso da marca/assets (pode/não pode)
 ```
 
 **Novo parceiro?** Comece por [`vendas/comece-aqui.md`](vendas/comece-aqui.md).
