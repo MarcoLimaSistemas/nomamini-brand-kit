@@ -1,13 +1,13 @@
 # Diretrizes da marca Noma Mini (parceiros)
 
-> Estas regras valem para TODO conteudo que voce criar divulgando a Noma Mini.
-> Injetadas automaticamente no inicio de cada sessao. Em caso de duvida, escale
+> Estas regras valem para TODO conteúdo que você criar divulgando a Noma Mini.
+> Injetadas automaticamente no início de cada sessão. Em caso de dúvida, escale
 > com a marca antes de publicar.
 
 ## A marca
-Noma Mini — moda infantil premium, estetica minimalista/escandinava. Publico:
-pais/maes que valorizam design, conforto e qualidade. Voce fala com os PAIS,
-nao com as criancas.
+Noma Mini — moda infantil premium, estética minimalista/escandinava. Público:
+pais/mães que valorizam design, conforto e qualidade. Você fala com os PAIS,
+não com as crianças.
 
 ## O que você vende (resumo)
 - **Conjunto** (camiseta oversize + shorts) R$ 59,90 · **Camisa avulsa** R$ 39,90.
@@ -17,45 +17,45 @@ nao com as criancas.
 - Detalhes: `vendas/ficha-de-produto.md`, `vendas/faq-e-objecoes.md`, `vendas/guia-de-tamanhos.md`.
 
 ## Tom de voz
-- Acolhedor, sofisticado mas acessivel.
+- Acolhedor, sofisticado mas acessível.
 - Nunca infantilizado demais (evitar diminutivos excessivos: "roupinha",
   "fofura", "bebezinho").
 - Frases curtas, diretas, com ritmo.
 - Foco em design, tecido, conforto e rotina real com filhos.
 
-## Politica de criativos — POR CANAL (regra critica)
+## Política de criativos — POR CANAL (regra crítica)
 
-| Canal | Crianca **real** | Crianca de **IA** | Como mostrar a peca |
+| Canal | Criança **real** | Criança de **IA** | Como mostrar a peça |
 |---|---|---|---|
-| Instagram (organico) | nunca | nunca | Manequim infantil / so produto |
-| Mídia paga (Meta Ads) | nunca | nunca | Manequim infantil / so produto |
-| Site / WhatsApp proprio | nunca | pode | Manequim, produto ou crianca de IA |
+| Instagram (orgânico) | nunca | nunca | Manequim infantil / só produto |
+| Mídia paga (Meta Ads) | nunca | nunca | Manequim infantil / só produto |
+| Site / WhatsApp próprio | nunca | pode | Manequim, produto ou criança de IA |
 
 Duas regras-base que valem em QUALQUER canal:
-1. **Crianca real nunca** — em lugar nenhum (ECA + risco de menor em conteudo
+1. **Criança real nunca** — em lugar nenhum (ECA + risco de menor em conteúdo
    comercial). Adulto pode.
-2. **No Instagram e em anuncio pago, nenhuma crianca** — nem de IA. O anuncio
-   roda na vitrine do Instagram e cai na moderacao que pode **excluir a conta**.
+2. **No Instagram e em anúncio pago, nenhuma criança** — nem de IA. O anúncio
+   roda na vitrine do Instagram e cai na moderação que pode **excluir a conta**.
 
-Se voce nao tem certeza do canal: trate como Instagram (so manequim/produto).
+Se você não tem certeza do canal: trate como Instagram (só manequim/produto).
 
 ## O que PODE mostrar (IG e mídia paga)
-- Manequim infantil (sem rosto / cabeca neutra) — forma principal de mostrar caimento.
-- So produto: flat lay, cabide, dobrada, detalhe de tecido/costura.
-- Produto em contexto sem pessoa (no berco, sobre a comoda).
-- Mao adulta segurando/dobrando a peca.
-- Movimento do produto (tecido, embalagem abrindo) — otimo pra Reels 9:16.
+- Manequim infantil (sem rosto / cabeça neutra) — forma principal de mostrar caimento.
+- Só produto: flat lay, cabide, dobrada, detalhe de tecido/costura.
+- Produto em contexto sem pessoa (no berço, sobre a cômoda).
+- Mão adulta segurando/dobrando a peça.
+- Movimento do produto (tecido, embalagem abrindo) — ótimo pra Reels 9:16.
 
-## O que NAO pode (nunca)
-- Crianca real (incluindo seus proprios filhos).
-- Crianca de IA no Instagram ou em anuncio pago.
-- Marca d'agua de ferramenta de IA queimada na imagem (remover antes de usar).
-- Alterar logo, cores ou proporcoes da marca.
-- Promessas que a marca nao faz (cura, garantia medica, claims de saude).
+## O que NÃO pode (nunca)
+- Criança real (incluindo seus próprios filhos).
+- Criança de IA no Instagram ou em anúncio pago.
+- Marca d'água de ferramenta de IA queimada na imagem (remover antes de usar).
+- Alterar logo, cores ou proporções da marca.
+- Promessas que a marca não faz (cura, garantia médica, claims de saúde).
 
-## Obrigacao de plataforma
-- Qualquer criativo gerado por IA exige o toggle "conteudo de IA" ligado no
-  Ads Manager (deteccao automatica da Meta). O disclaimer no texto nao substitui.
+## Obrigação de plataforma
+- Qualquer criativo gerado por IA exige o toggle "conteúdo de IA" ligado no
+  Ads Manager (detecção automática da Meta). O disclaimer no texto não substitui.
 
 ## Arsenal de conteúdo (já pronto no kit)
 - Identidade completa: `context/identidade-da-marca.md`.
@@ -66,10 +66,10 @@ Se voce nao tem certeza do canal: trate como Instagram (so manequim/produto).
 
 ## Skills deste kit
 - `/revisar-criativo` — confere um post/criativo contra estas regras antes de publicar.
-- `/gerar-copy-na-marca` — escreve legenda/anuncio no tom da Noma Mini.
+- `/gerar-copy-na-marca` — escreve legenda/anúncio no tom da Noma Mini.
 - `/montar-campanha` — monta a campanha paga na SUA conta (pixel/verba seus), com
-  o playbook Advantage+ e o template n8n+CAPI. A comissao e atribuida pelo SEU
-  codigo de cupom — use-o em todo criativo e na sua LP.
-- `/responder-cliente` — responde uma duvida de cliente na voz da marca (pos-venda escala pra marca).
-- `/planejar-semana` — monta o calendario da semana puxando dos roteiros/posts do kit.
-- `/fazer-minhas-fotos` — brief de foto/video so-produto no celular (se voce recebeu uma peca).
+  o playbook Advantage+ e o template n8n+CAPI. A comissão é atribuída pelo SEU
+  código de cupom — use-o em todo criativo e na sua LP.
+- `/responder-cliente` — responde uma dúvida de cliente na voz da marca (pós-venda escala pra marca).
+- `/planejar-semana` — monta o calendário da semana puxando dos roteiros/posts do kit.
+- `/fazer-minhas-fotos` — brief de foto/vídeo só-produto no celular (se você recebeu uma peça).
