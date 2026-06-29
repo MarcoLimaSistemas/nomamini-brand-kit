@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "test": "node --test",
+    "smoke": "node tools/smoke.mjs",
     "deploy": "wrangler deploy",
     "db:create": "wrangler d1 create noma_tracking",
     "db:init": "wrangler d1 execute noma_tracking --file=schema.sql --remote",

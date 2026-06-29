@@ -12,6 +12,7 @@
   // ---- contexto vindo do anúncio (UTMs, canal, cupom, fbclid) ----
   var ctx = {
     channel: qs.get("ch") || qs.get("canal") || "",
+    variant: (qs.get("v") || qs.get("variante") || "a").toLowerCase(),
     coupon: qs.get("cupom") || qs.get("coupon") || "",
     utm_source: qs.get("utm_source") || "",
     utm_medium: qs.get("utm_medium") || "",
@@ -26,6 +27,17 @@
 
   // mostra o cupom na página (sem hardcode)
   if (ctx.coupon) document.getElementById("cupom").textContent = ctx.coupon;
+
+  // ---- A/B test: troca headline + texto do CTA conforme ?v= ----
+  var VARIANTES = {
+    a: { h1: "Roupa infantil feita pra mexer.",       cta: "Ver na Shopee →" },
+    b: { h1: "A roupa que ele não pede pra tirar.",   cta: "Quero o conjunto →" },
+  };
+  var vc = VARIANTES[ctx.variant] || VARIANTES.a;
+  var h1 = document.querySelector(".hero h1"); if (h1) h1.textContent = vc.h1;
+  ["cta", "cta2"].forEach(function (id) {
+    var el = document.getElementById(id); if (el && id === "cta") el.textContent = vc.cta;
+  });
 
   // ---- CTA -> Worker /go (redirect rastreado) ----
   var goUrl = buildGoUrl();
@@ -92,7 +104,7 @@
     }
     var body = {
       click_id: clickId, event_id: clickId, event_name: name,
-      channel: ctx.channel, coupon: ctx.coupon, page: location.href,
+      channel: ctx.channel, variant: ctx.variant, coupon: ctx.coupon, page: location.href,
       fbp: getCookie("_fbp"), fbc: getCookie("_fbc") || fbcFromClid(),
       ga_client_id: gaClientId(), consent: consented,
     };
@@ -105,6 +117,7 @@
     var u = new URL(C.TRACKER + "/go");
     u.searchParams.set("u", C.SHOPEE_URL);
     if (ctx.channel) u.searchParams.set("ch", ctx.channel);
+    if (ctx.variant) u.searchParams.set("v", ctx.variant);
     if (ctx.coupon) u.searchParams.set("cupom", ctx.coupon);
     ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(function(k){
       if (ctx[k]) u.searchParams.set(k, ctx[k]);

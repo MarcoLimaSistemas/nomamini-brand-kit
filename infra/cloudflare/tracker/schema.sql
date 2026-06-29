@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS clicks (
   click_id      TEXT PRIMARY KEY,           -- id curto first-party (= sub_id Shopee = event_id Meta)
   created_at    INTEGER NOT NULL DEFAULT (unixepoch()),
   channel       TEXT,                        -- ads | reel | bio | parc
+  variant       TEXT,                        -- variante de A/B test (a | b | ...)
   coupon        TEXT,
   utm_source    TEXT,
   utm_medium    TEXT,
@@ -43,6 +44,7 @@ CREATE TABLE IF NOT EXISTS events (
   event_time    INTEGER NOT NULL,            -- unix segundos
   source        TEXT,                        -- 'browser' | 'server'
   channel       TEXT,
+  variant       TEXT,                        -- variante de A/B test
   coupon        TEXT,
   page          TEXT,
   value         REAL,

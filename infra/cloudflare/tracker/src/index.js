@@ -52,11 +52,11 @@ async function handleGo(request, url, env, ctx) {
 
   // 1) grava o clique no D1 (âncora de junção com o Shopee)
   const writeClick = env.DB.prepare(
-    `INSERT INTO clicks (click_id, channel, coupon, utm_source, utm_medium, utm_campaign,
+    `INSERT INTO clicks (click_id, channel, variant, coupon, utm_source, utm_medium, utm_campaign,
        utm_content, utm_term, fbp, fbc, ga_client_id, dest, page, referrer, ip_hash, ua, country)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
   ).bind(
-    clickId, t.channel, t.coupon, t.utm_source, t.utm_medium, t.utm_campaign,
+    clickId, t.channel, t.variant, t.coupon, t.utm_source, t.utm_medium, t.utm_campaign,
     t.utm_content, t.utm_term, t.fbp, fbc, t.ga_client_id, dest,
     request.headers.get("referer") || null, url.searchParams.get("ref") || null,
     ipHash, ua, country
@@ -79,19 +79,19 @@ async function handleGo(request, url, env, ctx) {
     await writeClick.run().catch(() => {});
     await logEvent(env, {
       click_id: clickId, event_id: clickId, event_name: eventName, event_time: eventTime,
-      source: "server", channel: t.channel, coupon: t.coupon, page: dest,
+      source: "server", channel: t.channel, variant: t.variant, coupon: t.coupon, page: dest,
     });
     if (env.META_PIXEL_ID && env.META_CAPI_TOKEN) {
       await sendMetaEvent(env, {
         event_name: eventName, event_id: clickId, event_time: eventTime,
         action_source: "website", event_source_url: request.headers.get("referer") || dest,
         fbp: t.fbp, fbc, ip, ua, country,
-        custom_data: { channel: t.channel, coupon: t.coupon },
+        custom_data: { channel: t.channel, variant: t.variant, coupon: t.coupon },
       }).catch(() => {});
     }
     if (env.GA4_MEASUREMENT_ID && env.GA4_API_SECRET && t.ga_client_id) {
       await sendGa4Event(env, t.ga_client_id, "outbound_click", {
-        channel: t.channel, coupon: t.coupon, click_id: clickId,
+        channel: t.channel, variant: t.variant, coupon: t.coupon, click_id: clickId,
       }).catch(() => {});
     }
   })());
@@ -123,7 +123,7 @@ async function handleCollect(request, env, ctx) {
   ctx.waitUntil((async () => {
     await logEvent(env, {
       click_id: clickId, event_id: eventId, event_name: eventName, event_time: eventTime,
-      source: "browser", channel: body.channel, coupon: body.coupon,
+      source: "browser", channel: body.channel, variant: body.variant, coupon: body.coupon,
       page: body.page, value: body.value, currency: body.currency, raw: JSON.stringify(body),
     });
     // dados pessoais (fbp/fbc) só seguem ao Meta COM consentimento (LGPD)
@@ -185,7 +185,7 @@ async function handleConversion(request, env) {
     const eventTime = c.purchase_time || Math.floor(Date.now() / 1000);
     await logEvent(env, {
       click_id: clickId, event_id: clickId, event_name: "Purchase", event_time: eventTime,
-      source: "server", channel: click.channel, coupon: click.coupon,
+      source: "server", channel: click.channel, variant: click.variant, coupon: click.coupon,
       value: c.value, currency: "BRL", raw: JSON.stringify(c),
     });
     if (env.META_PIXEL_ID && env.META_CAPI_TOKEN) {
@@ -233,7 +233,22 @@ async function handleStats(url, env) {
      GROUP BY event_name`
   ).bind(desde).all().catch(() => ({ results: [] }));
 
-  return json({ ok: true, dias, por_canal: porCanal.results || [], por_etapa: porEtapa.results || [] });
+  const porVariante = await env.DB.prepare(
+    `SELECT COALESCE(variant,'a') AS variante,
+            COUNT(*) AS cliques,
+            SUM(converted) AS vendas,
+            ROUND(100.0*SUM(converted)/COUNT(*), 2) AS conv_pct,
+            ROUND(SUM(COALESCE(value,0)), 2) AS receita
+     FROM clicks WHERE created_at > ?
+     GROUP BY variante ORDER BY conv_pct DESC`
+  ).bind(desde).all().catch(() => ({ results: [] }));
+
+  return json({
+    ok: true, dias,
+    por_canal: porCanal.results || [],
+    por_etapa: porEtapa.results || [],
+    por_variante: porVariante.results || [],
+  });
 }
 
 // ---------------------------------------------------------------------------
@@ -253,11 +268,11 @@ async function runRetention(env) {
 async function logEvent(env, e) {
   await env.DB.prepare(
     `INSERT INTO events (click_id, event_id, event_name, event_time, source, channel,
-       coupon, page, value, currency, raw)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?)`
+       variant, coupon, page, value, currency, raw)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`
   ).bind(
     e.click_id || null, e.event_id || null, e.event_name, e.event_time, e.source || null,
-    e.channel || null, e.coupon || null, e.page || null, e.value ?? null,
+    e.channel || null, e.variant || null, e.coupon || null, e.page || null, e.value ?? null,
     e.currency || null, e.raw || null
   ).run().catch(() => {});
   if (env.ANALYTICS) {

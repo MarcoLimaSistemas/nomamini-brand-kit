@@ -42,3 +42,8 @@ test("parseTracking: aliases canal/coupon (canal, coupon)", () => {
   assert.equal(t.channel, "reel");
   assert.equal(t.coupon, "JOAO-REEL");
 });
+
+test("parseTracking: variante default 'a' e lê ?v=", () => {
+  assert.equal(parseTracking(new URLSearchParams("")).variant, "a");
+  assert.equal(parseTracking(new URLSearchParams("v=b")).variant, "b");
+});

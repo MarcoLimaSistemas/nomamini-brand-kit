@@ -17,6 +17,7 @@ export function parseTracking(params) {
   const g = (k) => params.get(k) || null;
   return {
     channel: g("ch") || g("canal"),
+    variant: g("v") || g("variante") || "a",
     coupon: g("cupom") || g("coupon"),
     utm_source: g("utm_source"),
     utm_medium: g("utm_medium"),

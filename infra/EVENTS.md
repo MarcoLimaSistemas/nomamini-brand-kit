@@ -19,10 +19,16 @@ o que sai do browser (pixel) e do servidor (CAPI).
   é o que liga o evento à campanha.
 
 ## Parâmetros mínimos por evento
-- **Todos:** `event_id`, `event_time`, `channel`, `coupon`.
+- **Todos:** `event_id`, `event_time`, `channel`, `variant`, `coupon`.
 - **Purchase:** + `value`, `currency`, `order_id` (→ `transaction_id` no GA4).
 - **CAPI user_data:** `fbp`, `fbc`, `client_ip_address`, `client_user_agent`;
   PII (em/ph), se houver, **sempre hasheada** (já feito em `tracker/src/meta.js`).
+
+## A/B testing (`variant`)
+A LP lê `?v=a|b`, troca headline/CTA e marca **todos** os eventos com a variante.
+O `/stats` devolve `por_variante` e o painel mostra a comparação. Pra rodar: gere
+links com `v=a` e `v=b` (mesma verba), espere ~3 dias, compare a conversão. Quem já
+rodou o `schema.sql` antigo aplica `migrations/0002_variant.sql` uma vez.
 
 ## Onde conferir
 - Meta: Events Manager → Testar eventos (use `META_TEST_EVENT_CODE`). Os pares

@@ -48,6 +48,16 @@ Pega a URL do Worker (ex.: `https://noma-tracker.SEU.workers.dev`) e usa nos CTA
 https://noma-tracker.SEU.workers.dev/go?u=https%3A%2F%2Fshopee.com.br%2FPRODUTO&ch=ads&cupom=MARIA-ADS
 ```
 
+## Ferramentas (`tools/`)
+- `gerar-links.mjs` — gera os links `/go` rastreados por canal.
+- `smoke.mjs` — smoke test pós-deploy (`npm run smoke`, com `TRACKER`/`STATS_KEY`).
+- `apagar-dados.mjs` — gera os comandos de exclusão LGPD por `click_id` ou IP.
+
+## Migrações
+`schema.sql` é a base (instalações novas). Mudanças incrementais ficam em
+`migrations/` (ex.: `0002_variant.sql` adiciona o A/B testing) — aplique uma vez:
+`npx wrangler d1 execute noma_tracking --file=migrations/0002_variant.sql --remote`.
+
 ## Testar local
 
 ```bash

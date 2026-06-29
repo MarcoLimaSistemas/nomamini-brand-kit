@@ -36,6 +36,9 @@
   <div class="cards" id="cards"></div>
   <h2 style="font-size:18px">Por canal</h2>
   <table id="canal"><thead><tr><th>Canal</th><th class="n">Cliques</th><th class="n">Vendas</th><th class="n">Conv %</th><th class="n">Receita</th><th class="n">Comissão</th></tr></thead><tbody></tbody></table>
+
+  <h2 style="font-size:18px">A/B — por variante</h2>
+  <table id="variante"><thead><tr><th>Variante</th><th class="n">Cliques</th><th class="n">Vendas</th><th class="n">Conv %</th><th class="n">Receita</th></tr></thead><tbody></tbody></table>
   <div id="msg" class="err"></div>
 </div>
 
@@ -73,6 +76,13 @@
         "</td><td class=n>R$ "+(c.comissao||0)+"</td></tr>";
     });
     if(!d.por_canal.length) tb.innerHTML="<tr><td colspan=6>Sem dados nesse período.</td></tr>";
+
+    var vb=document.querySelector("#variante tbody"); vb.innerHTML="";
+    (d.por_variante||[]).forEach(function(v){
+      vb.innerHTML+="<tr><td>"+(v.variante||"a")+"</td><td class=n>"+v.cliques+"</td><td class=n>"+
+        (v.vendas||0)+"</td><td class=n>"+(v.conv_pct||0)+"</td><td class=n>R$ "+(v.receita||0)+"</td></tr>";
+    });
+    if(!(d.por_variante||[]).length) vb.innerHTML="<tr><td colspan=5>Sem A/B test nesse período.</td></tr>";
   }
   function card(v,l){return "<div class=card><b>"+v+"</b><span>"+l+"</span></div>";}
 
