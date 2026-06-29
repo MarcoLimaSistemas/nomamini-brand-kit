@@ -27,11 +27,9 @@ Nada disso é enviado pra Noma Mini nem versionado no repositório.
 No Claude Code:
 
 ```
-/plugin marketplace add nomamini/nomamini-brand-kit
+/plugin marketplace add MarcoLimaSistemas/nomamini-brand-kit
 /plugin install nomamini-brand-kit@nomamini
 ```
-
-(troque `nomamini/nomamini-brand-kit` pelo caminho real do repositório público)
 
 Depois é só conversar normalmente — as regras já estão ativas — ou chamar
 `/revisar-criativo` e `/gerar-copy-na-marca`.
