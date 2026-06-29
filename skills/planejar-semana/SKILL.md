@@ -1,6 +1,7 @@
 ---
 name: planejar-semana
 description: Monta um plano de conteúdo da semana (o que postar cada dia) usando o ritmo, os roteiros e o banco de posts do kit. Use quando o parceiro pedir "o que posto essa semana?", "monta meu calendário", "plano de conteúdo", "me organiza os posts".
+user_invocable: true
 ---
 
 # Planejar a semana de conteúdo

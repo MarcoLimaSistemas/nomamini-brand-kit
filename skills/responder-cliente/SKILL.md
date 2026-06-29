@@ -1,6 +1,7 @@
 ---
 name: responder-cliente
 description: Responde uma pergunta de cliente na voz da Noma Mini (tamanho, preço, tecido, cor, "como compro"). Use quando o parceiro colar uma mensagem/comentário de cliente e pedir "como respondo isso?", "me ajuda a responder", "o que falo aqui?".
+user_invocable: true
 ---
 
 # Responder cliente na voz da Noma Mini

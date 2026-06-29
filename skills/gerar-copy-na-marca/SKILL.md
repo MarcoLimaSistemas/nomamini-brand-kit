@@ -1,6 +1,7 @@
 ---
 name: gerar-copy-na-marca
 description: Escreve legenda, texto de anúncio, story ou roteiro de Reels na voz da Noma Mini para o parceiro divulgar. Use quando pedirem "escreve uma legenda", "faz a copy desse anúncio", "texto pro story", "roteiro de Reels" da Noma Mini.
+user_invocable: true
 ---
 
 # Gerar copy na voz da Noma Mini

@@ -1,6 +1,7 @@
 ---
 name: fazer-minhas-fotos
 description: Dá um brief de como o parceiro fotografar/filmar a peça que recebeu (celular, só-produto), na identidade da marca. Use quando pedir "como faço minhas fotos?", "brief de foto", "como fotografar a peça", "fazer Reels da peça".
+user_invocable: true
 ---
 
 # Fazer suas próprias fotos da peça (só-produto)

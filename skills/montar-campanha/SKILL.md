@@ -1,6 +1,7 @@
 ---
 name: montar-campanha
 description: Guia o parceiro a montar a própria campanha paga da Noma Mini (Meta Ads + pixel + fluxo n8n) usando a conta DELE. Use quando pedirem "como anuncio?", "montar campanha", "configurar pixel", "Advantage+", "fluxo n8n", "como mandar tráfego pago" pra Noma Mini.
+user_invocable: true
 ---
 
 # Montar a campanha (conta do parceiro)

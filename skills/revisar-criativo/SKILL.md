@@ -1,6 +1,7 @@
 ---
 name: revisar-criativo
 description: Revisa um post, criativo, legenda ou anúncio da Noma Mini contra a política de marca e de criativos ANTES de publicar. Use sempre que o parceiro for postar algo (feed, Reels, story, anúncio pago) divulgando a marca, ou pedir "revisa esse criativo", "posso postar isso?", "está na marca?".
+user_invocable: true
 ---
 
 # Revisar criativo na marca Noma Mini
