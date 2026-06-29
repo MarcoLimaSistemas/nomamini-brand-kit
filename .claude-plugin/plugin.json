@@ -46,6 +46,18 @@
       "title": "Seu Secret da Shopee Affiliate API (opcional)",
       "description": "Secret das suas credenciais Shopee Affiliate. Guardado no keychain (sensitive), nunca versionado.",
       "sensitive": true
+    },
+    "tracker_url": {
+      "type": "string",
+      "title": "URL do seu Worker de tracking (opcional)",
+      "description": "Ex.: https://noma-tracker.SEU.workers.dev. Usado pelas skills de tracking pra apontar os CTAs e medir o funil.",
+      "sensitive": false
+    },
+    "ga4_measurement_id": {
+      "type": "string",
+      "title": "Seu GA4 Measurement ID (opcional)",
+      "description": "G-XXXXXXX da sua propriedade GA4. So pra quem liga o Google Analytics no funil. Publico.",
+      "sensitive": false
     }
   }
 }

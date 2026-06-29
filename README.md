@@ -11,9 +11,28 @@ skills para criar conteúdo na voz da marca **sem quebrar a conta**.
 - **`/gerar-copy-na-marca`** — escreve legenda/anúncio na voz da Noma Mini.
 - **`/montar-campanha`** — monta a campanha paga na **sua** conta (pixel e verba
   seus), com o playbook Advantage+ e o template n8n+CAPI.
+- **`/configurar-tracking`** — sobe a infra de venda rastreada (Worker + D1 + LP no
+  Cloudflare) e liga pixel/CAPI/GA4 server-side.
+- **`/conectar-shopee`** — fecha o loop: puxa as conversões da Shopee e manda
+  `Purchase` server-side, casado ao usuário que clicou.
+- **`/medir-funil`** — lê o banco de eventos e diz qual canal converte (cliques,
+  vendas, taxa e receita por canal).
 
 > Este kit contém **só** marca, tom, regras de criativo e playbook. Não inclui
 > dados, preços, contas ou credenciais da Noma Mini.
+
+## Venda automatizada + tracking ponta-a-ponta (`infra/`)
+Como a compra fecha **dentro do Shopee** (sem pixel no checkout), o único jeito de
+rastrear o usuário ponta-a-ponta é **server-side**. A pasta [`infra/`](infra/) traz
+isso pronto, rodando no Cloudflare:
+
+1. **LP rastreada** (Pages) → pixel + GA4 + consentimento LGPD.
+2. **Worker `/go`** → gera um `click_id` first-party, grava o clique (D1), dispara
+   o CAPI e redireciona pro Shopee carregando o `click_id` no `sub_id`.
+3. **n8n** → lê as conversões da Shopee, casa o `click_id` e manda o `Purchase`
+   server-side com o `event_id` certo (dedup). **Loop fechado.**
+
+Comece por [`infra/README.md`](infra/README.md) ou rode `/configurar-tracking`.
 
 ## Configuração no install (suas credenciais, nunca as da marca)
 No install, o plugin pergunta (e guarda **no seu** Claude Code / keychain):
@@ -55,6 +74,15 @@ skills/
   responder-cliente/SKILL.md    responde dúvida de cliente na voz da marca
   planejar-semana/SKILL.md      monta o calendário da semana a partir do kit
   fazer-minhas-fotos/SKILL.md   brief de foto/vídeo só-produto (celular)
+  configurar-tracking/SKILL.md  sobe a infra de venda rastreada (Cloudflare)
+  conectar-shopee/SKILL.md      fecha o loop de conversão (Shopee API -> CAPI)
+  medir-funil/SKILL.md          relatório do funil por canal (lê o D1)
+infra/                       INFRA DE VENDA AUTOMATIZADA + TRACKING (Cloudflare)
+  README.md                  arquitetura do funil + contrato de dados
+  cloudflare/tracker/        Worker: /go (redirect rastreado), /collect, /conversion + D1
+  cloudflare/pages/          LP rastreada (pixel + GA4 + consentimento LGPD)
+  n8n/                       reconciliação Shopee -> CAPI (fecha o loop de Purchase)
+  SECRETS.md                 inventário de segredos e como guardá-los
 templates/
   lp/                        landing page pronta (troca 3 valores e sobe num host grátis)
   n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
@@ -88,6 +116,7 @@ vendas/
 juridico/
   contrato-afiliado-modelo.md    contrato de parceria (modelo, revisar c/ advogado)
   uso-imagem-ia-afiliado.md      regra de imagem/IA pro parceiro
+  privacidade-e-tracking.md      política de privacidade/LGPD do funil rastreado
 TERMOS-DE-USO.md                 licença de uso da marca/assets (pode/não pode)
 ```
 

@@ -1,0 +1,9 @@
+# Copie pra .dev.vars (que está no .gitignore) e preencha pra rodar `wrangler dev`.
+# Em produção, NÃO use este arquivo — suba cada um com `wrangler secret put NOME`.
+
+META_CAPI_TOKEN="seu-token-capi"
+GA4_API_SECRET="seu-api-secret-ga4"
+SHOPEE_SECRET="seu-secret-shopee"
+IP_SALT="troque-por-uma-string-aleatoria-longa"
+INGEST_KEY="chave-secreta-compartilhada-com-o-n8n"
+# META_TEST_EVENT_CODE="TEST12345"   # opcional, só pra validar no Events Manager

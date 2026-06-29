@@ -45,6 +45,12 @@ No install, informe seu pixel/conta de Ads e o seu código de cupom.
 - `/montar-campanha` monta o anúncio na **sua** conta, com **sua** verba.
 - Quer mandar a conversão de volta? Importe `../templates/n8n-capi-pixel-flow.json`.
 
+## 7. (Avançado) Venda rastreada ponta-a-ponta
+- Quer saber **qual canal converte de verdade** e rastrear o usuário do clique até
+  a venda? Suba a infra de [`../infra/`](../infra/) com `/configurar-tracking`,
+  feche o loop com `/conectar-shopee` e acompanhe com `/medir-funil`.
+- É server-side porque a compra fecha na Shopee — o pixel sozinho não vê a venda.
+
 ---
 
 ## Como você recebe

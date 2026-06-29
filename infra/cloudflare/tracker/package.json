@@ -1,0 +1,18 @@
+{
+  "name": "noma-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Worker de tracking server-side da Noma Mini (redirect Shopee + Meta CAPI + GA4 + D1).",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create noma_tracking",
+    "db:init": "wrangler d1 execute noma_tracking --file=schema.sql --remote",
+    "db:init:local": "wrangler d1 execute noma_tracking --file=schema.sql --local",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

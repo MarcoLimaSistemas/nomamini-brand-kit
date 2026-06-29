@@ -5,3 +5,12 @@
 *.secret
 .claude/
 node_modules/
+
+# Cloudflare / wrangler
+.dev.vars
+.wrangler/
+dist/
+.mf/
+
+# n8n exports com credenciais embutidas (exporte só os templates sem secret)
+*-with-credentials.json

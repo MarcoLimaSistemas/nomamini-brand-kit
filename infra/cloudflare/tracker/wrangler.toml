@@ -1,0 +1,35 @@
+# Worker de tracking Noma Mini — config do Cloudflare.
+# Deploy:  wrangler deploy
+# Local:   wrangler dev   (usa .dev.vars pros segredos)
+
+name = "noma-tracker"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# ---- Variáveis públicas (NÃO sensíveis) — pode versionar ----
+[vars]
+ALLOWED_ORIGIN = "https://nomamini.com"        # origem da sua LP (pro /collect)
+DEFAULT_SHOPEE_URL = ""                          # link Shopee padrão se /go vier sem ?u=
+GO_EVENT_NAME = "InitiateCheckout"               # evento do clique de saída
+META_PIXEL_ID = ""                               # id do pixel (público)
+GA4_MEASUREMENT_ID = ""                          # G-XXXXXXX (público)
+SHOPEE_APP_ID = ""                               # App ID Shopee (público; o Secret é segredo)
+
+# ---- Segredos (NUNCA aqui) — suba com `wrangler secret put NOME` ----
+#   META_CAPI_TOKEN        token da Conversions API
+#   GA4_API_SECRET         api secret do GA4 Measurement Protocol
+#   SHOPEE_SECRET          secret da Shopee Affiliate API
+#   IP_SALT                sal aleatório pro hash de IP (LGPD)
+#   INGEST_KEY             chave compartilhada com o n8n (autentica /conversion)
+#   META_TEST_EVENT_CODE   (opcional) código de teste do CAPI
+
+# ---- D1 (banco de eventos) ----
+[[d1_databases]]
+binding = "DB"
+database_name = "noma_tracking"
+database_id = "TROCAR_PELO_ID_DO_SEU_D1"         # `wrangler d1 create noma_tracking` devolve o id
+
+# ---- Analytics Engine (dashboards em tempo real, opcional) ----
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "noma_eventos"

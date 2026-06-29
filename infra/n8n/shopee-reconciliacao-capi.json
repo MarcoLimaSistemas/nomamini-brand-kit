@@ -1,0 +1,92 @@
+{
+  "name": "Noma Mini - Reconciliacao Shopee -> CAPI (fecha o loop)",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 6 }] }
+      },
+      "id": "agenda",
+      "name": "A cada 6h",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Monta e ASSINA a requisicao do conversionReport da Shopee Affiliate API.\n// Credenciais via variaveis de ambiente do n8n (NUNCA no fluxo):\n//   SHOPEE_APP_ID, SHOPEE_SECRET\n// Assinatura oficial: SHA256(AppId + Timestamp + Payload + Secret) em hex.\nconst APP_ID = $env.SHOPEE_APP_ID;\nconst SECRET = $env.SHOPEE_SECRET;\nif (!APP_ID || !SECRET) throw new Error('Defina SHOPEE_APP_ID e SHOPEE_SECRET nas variaveis do n8n');\n\nconst fim = Math.floor(Date.now() / 1000);\nconst ini = fim - 7 * 24 * 3600; // ultimos 7 dias (reprocessa por seguranca; ingest e idempotente)\n\nconst query = `query { conversionReport(purchaseTimeStart: ${ini}, purchaseTimeEnd: ${fim}, limit: 500) { nodes { conversionId orderId purchaseTime totalCommission netCommission utmContent campaignType } pageInfo { scrollId hasNextPage } } }`;\nconst payload = JSON.stringify({ query });\nconst ts = Math.floor(Date.now() / 1000);\n\nconst base = `${APP_ID}${ts}${payload}${SECRET}`;\nconst buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(base));\nconst sig = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');\n\nreturn [{ json: {\n  endpoint: 'https://open-api.affiliate.shopee.com.br/graphql',\n  authorization: `SHA256 Credential=${APP_ID}, Timestamp=${ts}, Signature=${sig}`,\n  payload\n} }];"
+      },
+      "id": "assina",
+      "name": "Monta + assina (Shopee)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $json.endpoint }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Authorization", "value": "={{ $json.authorization }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ $json.payload }}",
+        "options": {}
+      },
+      "id": "chama-shopee",
+      "name": "Le conversionReport",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extrai as conversoes e mapeia pro contrato do Worker (/conversion).\n// O utmContent traz o click_id que o /go injetou como sub_id -> junção exata.\nconst data = $json.data && $json.data.conversionReport;\nif (!data || !Array.isArray(data.nodes)) return [];\nreturn data.nodes.map(n => ({ json: {\n  conversion_id: n.conversionId,\n  order_id: n.orderId,\n  click_id: n.utmContent,\n  purchase_time: Number(n.purchaseTime) || null,\n  total_commission: Number(n.totalCommission) || 0,\n  net_commission: Number(n.netCommission) || 0,\n  campaign_type: n.campaignType || null\n} }));"
+      },
+      "id": "mapeia",
+      "name": "Mapeia conversoes",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.TRACKER_URL }}/conversion",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "x-ingest-key", "value": "={{ $env.INGEST_KEY }}" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($input.all().map(i => i.json)) }}",
+        "options": {}
+      },
+      "id": "envia-worker",
+      "name": "Empurra pro Worker (/conversion)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "A cada 6h": { "main": [[{ "node": "Monta + assina (Shopee)", "type": "main", "index": 0 }]] },
+    "Monta + assina (Shopee)": { "main": [[{ "node": "Le conversionReport", "type": "main", "index": 0 }]] },
+    "Le conversionReport": { "main": [[{ "node": "Mapeia conversoes", "type": "main", "index": 0 }]] },
+    "Mapeia conversoes": { "main": [[{ "node": "Empurra pro Worker (/conversion)", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false,
+  "meta": {
+    "_comentario": "Fecha o loop de atribuicao no modelo afiliado Shopee. Variaveis de ambiente do n8n necessarias: SHOPEE_APP_ID, SHOPEE_SECRET, TRACKER_URL (https://noma-tracker.SEU.workers.dev), INGEST_KEY (mesma do Worker). O Worker /conversion casa o click_id, atualiza o D1 e manda Purchase ao CAPI/GA4. O ingest e idempotente (ON CONFLICT), entao reprocessar a janela e seguro. Paginacao por scrollId: para >500 conversoes/janela, adicione um loop com pageInfo.scrollId (expira ~30s)."
+  }
+}
