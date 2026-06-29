@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validar repo (JSON, skills, infra, segredos)
+        run: node scripts/validate.mjs
+
+      - name: Checar sintaxe do Worker e da LP
+        run: |
+          for f in infra/cloudflare/tracker/src/*.js \
+                   infra/cloudflare/tracker/tools/*.mjs \
+                   infra/cloudflare/pages/tracking.js \
+                   scripts/*.mjs; do
+            node --check "$f"
+          done
+
+      - name: Testes do tracker
+        working-directory: infra/cloudflare/tracker
+        run: node --test

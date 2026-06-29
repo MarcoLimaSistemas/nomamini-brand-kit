@@ -72,6 +72,12 @@ isso, você conta a conversão em dobro.
 3. `n8n/` — importa o fluxo de reconciliação e agenda.
 
 Rode a skill **`/configurar-tracking`** que ela te guia por tudo isso passo a passo.
+Antes do CNPJ, siga o bloco A do [`CHECKLIST-LANCAMENTO.md`](CHECKLIST-LANCAMENTO.md).
+
+## Mais nesta pasta
+- [`EVENTS.md`](EVENTS.md) — taxonomia de eventos (Meta × GA4 × D1) e a regra de dedup.
+- [`CHECKLIST-LANCAMENTO.md`](CHECKLIST-LANCAMENTO.md) — pré-CNPJ / com MEI / ligar a verba.
+- [`cloudflare/tracker/tools/gerar-links.mjs`](cloudflare/tracker/tools/gerar-links.mjs) — gera os links `/go` por canal.
 
 ## Privacidade (LGPD)
 

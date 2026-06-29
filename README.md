@@ -79,10 +79,16 @@ skills/
   medir-funil/SKILL.md          relatório do funil por canal (lê o D1)
 infra/                       INFRA DE VENDA AUTOMATIZADA + TRACKING (Cloudflare)
   README.md                  arquitetura do funil + contrato de dados
+  EVENTS.md                  taxonomia de eventos (Meta × GA4 × D1)
+  CHECKLIST-LANCAMENTO.md    o que fazer pré-CNPJ, com o MEI e no dia de ligar a verba
   cloudflare/tracker/        Worker: /go (redirect rastreado), /collect, /conversion + D1
+    tools/gerar-links.mjs    gera os links /go por canal (copia e cola no anúncio)
+    test/                    testes das funções de tracking (node --test)
   cloudflare/pages/          LP rastreada (pixel + GA4 + consentimento LGPD)
   n8n/                       reconciliação Shopee -> CAPI (fecha o loop de Purchase)
   SECRETS.md                 inventário de segredos e como guardá-los
+scripts/validate.mjs         validador do repo (roda na CI: JSON, skills, infra)
+.github/workflows/           CI (valida + testa) e Deploy (Cloudflare, gated)
 templates/
   lp/                        landing page pronta (troca 3 valores e sobe num host grátis)
   n8n-capi-pixel-flow.json   fluxo CAPI com placeholders (credencial do parceiro)
@@ -106,6 +112,8 @@ vendas/
   scripts-de-conversa.md DM proativo + pré-venda + objeções
   ideias-de-conteudo.md  ganchos e calendário de posts
   inteligencia-de-campanha.md  use 1 código por canal pra saber o que converte
+  primeira-campanha-rastreada.md  monta a 1ª campanha com os links /go rastreados
+  abrir-mei.md            guia prático pra abrir o MEI (CNAE, NF, DAS)
   conectar-api-shopee.md  (avançado) gerar links + ler conversões via API oficial
   legendas-prontas.md    legendas copia-e-cola (pra quem não usa o Claude Code)
   roteiros-reels.md      8 roteiros de Reels plano a plano
