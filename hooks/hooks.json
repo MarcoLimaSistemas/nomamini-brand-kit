@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/context/diretrizes-marca.md\""
+          },
+          {
+            "type": "command",
+            "command": "printf '\\n## Contexto do parceiro\\n- Conta Meta: %s\\n- Pixel: %s\\n- Codigo de cupom (atribuicao): %s\\n(token CAPI guardado no keychain, nao exibido)\\n' \"${CLAUDE_PLUGIN_OPTION_meta_ad_account_id:-nao configurado}\" \"${CLAUDE_PLUGIN_OPTION_meta_pixel_id:-nao configurado}\" \"${CLAUDE_PLUGIN_OPTION_cupom_codigo:-nao configurado}\""
+          }
+        ]
+      }
+    ]
+  }
+}

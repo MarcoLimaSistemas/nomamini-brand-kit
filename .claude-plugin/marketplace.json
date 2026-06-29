@@ -1,0 +1,13 @@
+{
+  "name": "nomamini",
+  "owner": {
+    "name": "Noma Mini"
+  },
+  "plugins": [
+    {
+      "name": "nomamini-brand-kit",
+      "source": "./",
+      "description": "Diretrizes de marca + revisao e geracao de conteudo na voz da Noma Mini."
+    }
+  ]
+}

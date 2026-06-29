@@ -1,0 +1,74 @@
+{
+  "name": "Noma Mini - CAPI Purchase (pixel do parceiro)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "noma-venda-confirmada",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-venda",
+      "name": "Venda confirmada (webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [260, 300],
+      "webhookId": "noma-venda-confirmada"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "1", "name": "event_name", "value": "Purchase", "type": "string" },
+            { "id": "2", "name": "event_time", "value": "={{ Math.floor(Date.now()/1000) }}", "type": "number" },
+            { "id": "3", "name": "value", "value": "={{ $json.body.valor }}", "type": "number" },
+            { "id": "4", "name": "currency", "value": "BRL", "type": "string" },
+            { "id": "5", "name": "action_source", "value": "website", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "monta-evento",
+      "name": "Monta evento",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v21.0/SEU_PIXEL_ID/events",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"data\": [\n    {\n      \"event_name\": \"{{ $json.event_name }}\",\n      \"event_time\": {{ $json.event_time }},\n      \"action_source\": \"{{ $json.action_source }}\",\n      \"custom_data\": { \"value\": {{ $json.value }}, \"currency\": \"{{ $json.currency }}\" }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "envia-capi",
+      "name": "Envia ao CAPI (pixel do parceiro)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [780, 300],
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "TROCAR_PELA_CREDENCIAL_DO_PARCEIRO",
+          "name": "Meta CAPI token (parceiro)"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Venda confirmada (webhook)": {
+      "main": [[{ "node": "Monta evento", "type": "main", "index": 0 }]]
+    },
+    "Monta evento": {
+      "main": [[{ "node": "Envia ao CAPI (pixel do parceiro)", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false,
+  "meta": {
+    "_comentario": "Template do braco de vendas Noma Mini. TROQUE: (1) SEU_PIXEL_ID na URL pelo pixel do parceiro; (2) a credencial httpQueryAuth 'access_token' = token CAPI do proprio parceiro, criada no n8n dele (NUNCA cole o token neste arquivo). Webhook recebe a venda confirmada e envia um evento Purchase ao pixel do parceiro."
+  }
+}

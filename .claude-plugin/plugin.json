@@ -1,0 +1,39 @@
+{
+  "name": "nomamini-brand-kit",
+  "displayName": "Noma Mini — Brand Kit",
+  "description": "Diretrizes de marca, tom de voz, politica de criativos e playbook de campanha da Noma Mini para parceiros do braco de vendas. Injeta as regras toda sessao, revisa/gera conteudo na marca e ajuda a montar a campanha com pixel proprio.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Noma Mini",
+    "email": "contato@nomamini.com"
+  },
+  "homepage": "https://nomamini.com",
+  "license": "MIT",
+  "keywords": ["nomamini", "branding", "moda-infantil", "afiliados", "meta-ads"],
+  "userConfig": {
+    "meta_ad_account_id": {
+      "type": "string",
+      "title": "ID da sua conta de anuncios Meta (act_...)",
+      "description": "A SUA conta de Ads (do parceiro), nao a da Noma Mini. Usada so pra orientar o setup da campanha.",
+      "sensitive": false
+    },
+    "meta_pixel_id": {
+      "type": "string",
+      "title": "ID do SEU pixel/dataset Meta",
+      "description": "O pixel da sua propria conta. Fica so no seu Claude Code, nunca e enviado pra Noma Mini.",
+      "sensitive": false
+    },
+    "meta_capi_token": {
+      "type": "string",
+      "title": "Seu token de Conversions API (CAPI)",
+      "description": "Token do SEU pixel pro fluxo n8n. Guardado no keychain do seu sistema (sensitive), nunca versionado nem compartilhado.",
+      "sensitive": true
+    },
+    "cupom_codigo": {
+      "type": "string",
+      "title": "Seu codigo de voucher de parceiro",
+      "description": "O codigo de cupom que a Noma Mini te deu (ex.: MARIA). E ele que atribui suas vendas. Vai nos criativos e na sua LP.",
+      "sensitive": false
+    }
+  }
+}

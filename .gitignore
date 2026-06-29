@@ -1,0 +1,7 @@
+# nunca versionar credenciais ou configs locais
+*.env
+.env*
+*.token
+*.secret
+.claude/
+node_modules/
