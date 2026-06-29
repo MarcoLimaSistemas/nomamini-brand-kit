@@ -57,6 +57,13 @@ Se voce nao tem certeza do canal: trate como Instagram (so manequim/produto).
 - Qualquer criativo gerado por IA exige o toggle "conteudo de IA" ligado no
   Ads Manager (deteccao automatica da Meta). O disclaimer no texto nao substitui.
 
+## Arsenal de conteúdo (já pronto no kit)
+- Identidade completa: `context/identidade-da-marca.md`.
+- História da marca: `vendas/historia-da-marca.md`. Scripts de conversa: `vendas/scripts-de-conversa.md`.
+- Roteiros: `vendas/roteiros-reels.md`, `vendas/roteiros-stories.md`. Posts: `vendas/banco-de-posts.md`.
+- Anúncio: `vendas/angulos-de-anuncio.md`. Ritmo: `vendas/calendario-de-conteudo.md`.
+- Imagens: `assets/estaticos/` (com copy), `assets/templates-social/`, `assets/carrosseis/`, `assets/cards/`.
+
 ## Skills deste kit
 - `/revisar-criativo` — confere um post/criativo contra estas regras antes de publicar.
 - `/gerar-copy-na-marca` — escreve legenda/anuncio no tom da Noma Mini.

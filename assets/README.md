@@ -34,6 +34,15 @@ pra postar — performam bem no orgânico (salvamento/compartilhamento):
 ## Cards de frase (`cards/`)
 8 cards 1080×1080 com frases da marca — tapa-buraco de feed sem precisar de foto.
 
+## Criativos estáticos prontos (`estaticos/`)
+20 PNGs com copy já embutida (flatlay, cabide, detalhe, grade, camisa) em 3 formatos
+— 9×16 (Reels/Stories), 4×5 (feed) e 1×1 (Shopee/quadrado), + variações `-b` de
+headline pra teste A/B. Todos só-produto. Pode postar direto.
+
+## Templates de social (`templates-social/`)
+Fundos prontos na identidade da marca pra você colar foto/texto por cima:
+story (1080×1920), feed (1080×1080), status WhatsApp, capa/moldura de perfil.
+
 ## Cores e fontes
 Pra criar o seu próprio: ver [`marca-cores-fontes.md`](marca-cores-fontes.md).
 

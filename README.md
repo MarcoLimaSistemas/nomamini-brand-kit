@@ -46,7 +46,8 @@ de IA) — só manequim ou produto. Na dúvida, rode `/revisar-criativo` antes d
 hooks/
   hooks.json           SessionStart -> injeta as diretrizes
 context/
-  diretrizes-marca.md  as regras sempre-ativas
+  diretrizes-marca.md      as regras sempre-ativas
+  identidade-da-marca.md   manifesto, posicionamento, tom, paleta, persona
 skills/
   revisar-criativo/SKILL.md
   gerar-copy-na-marca/SKILL.md
@@ -56,16 +57,25 @@ templates/
 assets/
   logo/                logo (svg + png)
   criativos/           fotos só-produto + tabela-tamanhos.png + video/ (10 Reels 9:16)
+  estaticos/           20 criativos prontos com copy (9×16/4×5/1×1 + A/B)
+  templates-social/    fundos prontos (story/feed/status/perfil)
   carrosseis/          7 carrosséis educativos prontos
   cards/               8 cards de frase da marca
   marca-cores-fontes.md  paleta + fontes pra Canva
 vendas/
-  comece-aqui.md       onboarding do parceiro (6 passos)
-  ficha-de-produto.md  o que você vende (tecido, cores, tamanhos, preços)
-  faq-e-objecoes.md    respostas prontas pro cliente
-  guia-de-tamanhos.md  tabelas + resposta pronta (a pergunta nº1)
-  ideias-de-conteudo.md ganchos e calendário de posts
-  legendas-prontas.md  legendas copia-e-cola (pra quem não usa o Claude Code)
+  comece-aqui.md         onboarding do parceiro (6 passos)
+  historia-da-marca.md   a história da fundadora pra você contar
+  ficha-de-produto.md    o que você vende (tecido, cores, tamanhos, preços)
+  faq-e-objecoes.md      respostas prontas pro cliente
+  guia-de-tamanhos.md    tabelas + resposta pronta (a pergunta nº1)
+  scripts-de-conversa.md DM proativo + pré-venda + objeções
+  ideias-de-conteudo.md  ganchos e calendário de posts
+  legendas-prontas.md    legendas copia-e-cola (pra quem não usa o Claude Code)
+  roteiros-reels.md      8 roteiros de Reels plano a plano
+  roteiros-stories.md    6 sequências de stories prontas
+  banco-de-posts.md      10 posts evergreen com legenda + hashtags
+  angulos-de-anuncio.md  5 ângulos de copy pra mídia paga
+  calendario-de-conteudo.md  ritmo do mês + datas de pico
 juridico/
   contrato-afiliado-modelo.md    contrato de parceria (modelo, revisar c/ advogado)
   uso-imagem-ia-afiliado.md      regra de imagem/IA pro parceiro
