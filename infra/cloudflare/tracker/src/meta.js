@@ -39,11 +39,11 @@ export async function sendMetaEvent(env, e) {
   return res.json();
 }
 
-const normEmail = (s) => String(s).trim().toLowerCase();
+export const normEmail = (s) => String(s).trim().toLowerCase();
 // telefone: só dígitos com código do país, sem '+', espaços, parênteses ou hífens.
-const normPhone = (s) => String(s).replace(/\D/g, "").replace(/^0+/, "");
+export const normPhone = (s) => String(s).replace(/\D/g, "").replace(/^0+/, "");
 // país: código ISO 3166-1 alpha-2 (2 letras), minúsculo.
-const normCountry = (s) => String(s).trim().toLowerCase().slice(0, 2);
+export const normCountry = (s) => String(s).trim().toLowerCase().slice(0, 2);
 function cleanup(o) {
   const out = {};
   for (const [k, v] of Object.entries(o)) if (v !== null && v !== undefined && v !== "") out[k] = v;
