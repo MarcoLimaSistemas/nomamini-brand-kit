@@ -18,7 +18,7 @@ jobs:
     # não tenta deployar em fork/sem credencial
     if: ${{ github.repository_owner != '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: 22
